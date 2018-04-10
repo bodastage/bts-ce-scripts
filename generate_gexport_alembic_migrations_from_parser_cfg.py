@@ -1,8 +1,8 @@
-# Generate table creation sql
+# Generate gexport alembic migration script from parser config
 #
 # generate_gexport_alembic_migrations_from_parser_cfg.py huawei_gexport_gsm BSC6900GSM /mediation/conf/cm/gexport_gsm.cfg
 #
-# Example: python generate_table_sql.py huawei_gexport_gsm "data/cm/conf/gexport_gsm.cfg"
+# Example: python generate_gexport_alembic_migrations_from_parser_cfg.py huawei_gexport_gsm "data/cm/conf/gexport_gsm.cfg"
 
 # Licence: Apache 2.0
 #
