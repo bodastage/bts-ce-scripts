@@ -40,6 +40,7 @@ with open(parser_cfg) as f:
                 print("    sa.Column('{}', sa.CHAR(length=250), autoincrement=False, nullable=True),".format(param))
         print("schema='{}'".format(schema))
         print(")")
+        print("")
 
 
 
