@@ -18,7 +18,9 @@ if len(sys.argv) != 4:
 schema = sys.argv[1]
 ne_type = sys.argv[2]
 parser_cfg = sys.argv[3]
-csv_dir='/mediation/data/cm/huawei/parsed/gexport_gsm/'
+
+# Change this according to location of the parsed files
+csv_dir='/mediation/data/cm/huawei/parsed/gexport_lte'
 
 
 print( "-- psql -U bodastage -d database -a -f {}.load.sql".format(schema) )

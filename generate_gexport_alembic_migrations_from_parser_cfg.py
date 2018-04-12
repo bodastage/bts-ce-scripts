@@ -35,7 +35,7 @@ with open(parser_cfg) as f:
         print("op.create_table('{}_{}',".format(mo, ne_type))
         for param in param_list:
             if param == 'DATETIME' or param == 'varDateTime':
-                print("    sa.Column('{}', postgresql.TIMESTAMP(), autoincrement=False, nullable=True),".format(param))
+                print("    sa.Column('{}', sa.DateTime, autoincrement=False, nullable=True),".format(param))
             else:
                 print("    sa.Column('{}', sa.CHAR(length=250), autoincrement=False, nullable=True),".format(param))
         print("schema='{}'".format(schema))
