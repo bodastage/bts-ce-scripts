@@ -1,5 +1,5 @@
 def upgrade():
-    op.create_table('GCELL_BSC6900GSM',
+    op.create_table('GCELL_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -45,7 +45,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('BSCBASIC_BSC6900GSM',
+    op.create_table('BSCBASIC_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -116,7 +116,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('SYS_BSC6900GSM',
+    op.create_table('SYS_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -128,7 +128,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('CELLBIND2BTS_BSC6900GSM',
+    op.create_table('CELLBIND2BTS_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -141,7 +141,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GEXT2GCELL_BSC6900GSM',
+    op.create_table('GEXT2GCELL_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -183,7 +183,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GEXTLTECELL_BSC6900GSM',
+    op.create_table('GEXTLTECELL_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -207,7 +207,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GEXT3GCELL_BSC6900GSM',
+    op.create_table('GEXT3GCELL_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -243,7 +243,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GEXTSMLC_BSC6900GSM',
+    op.create_table('GEXTSMLC_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -258,7 +258,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('BTS_BSC6900GSM',
+    op.create_table('BTS_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -302,7 +302,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GCELLBASICPARA_BSC6900GSM',
+    op.create_table('GCELLBASICPARA_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -375,7 +375,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GTRX_BSC6900GSM',
+    op.create_table('GTRX_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -417,7 +417,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GCELLLCS_BSC6900GSM',
+    op.create_table('GCELLLCS_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -440,7 +440,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('G2GNCELL_BSC6900GSM',
+    op.create_table('G2GNCELL_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -500,7 +500,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('G3GARFCN_BSC6900GSM',
+    op.create_table('G3GARFCN_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -511,7 +511,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('G3GNCELL_BSC6900GSM',
+    op.create_table('G3GNCELL_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -532,7 +532,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GLTENCELL_BSC6900GSM',
+    op.create_table('GLTENCELL_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -552,7 +552,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GTRXCHAN_BSC6900GSM',
+    op.create_table('GTRXCHAN_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -575,7 +575,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GTRXCHANHOP_BSC6900GSM',
+    op.create_table('GTRXCHANHOP_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -593,7 +593,7 @@ def upgrade():
         schema='huawei_gexport_gsm'
     )
 
-    op.create_table('GTRXHOP_BSC6900GSM',
+    op.create_table('GTRXHOP_BSC6910GSM',
         sa.Column('FILENAME', sa.CHAR(length=250), autoincrement=False, nullable=True),
         sa.Column('DATETIME', sa.DateTime, autoincrement=False, nullable=True),
         sa.Column('TECHNOLOGY', sa.CHAR(length=250), autoincrement=False, nullable=True),
@@ -608,22 +608,22 @@ def upgrade():
     )
 
 def downgrade():
-    op.drop_table('GCELL_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('BSCBASIC_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('SYS_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('CELLBIND2BTS_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GEXT2GCELL_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GEXTLTECELL_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GEXT3GCELL_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GEXTSMLC_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('BTS_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GCELLBASICPARA_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GTRX_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GCELLLCS_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('G2GNCELL_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('G3GARFCN_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('G3GNCELL_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GLTENCELL_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GTRXCHAN_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GTRXCHANHOP_BSC6900GSM', schema='huawei_gexport_gsm')
-    op.drop_table('GTRXHOP_BSC6900GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GCELL_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('BSCBASIC_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('SYS_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('CELLBIND2BTS_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GEXT2GCELL_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GEXTLTECELL_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GEXT3GCELL_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GEXTSMLC_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('BTS_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GCELLBASICPARA_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GTRX_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GCELLLCS_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('G2GNCELL_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('G3GARFCN_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('G3GNCELL_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GLTENCELL_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GTRXCHAN_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GTRXCHANHOP_BSC6910GSM', schema='huawei_gexport_gsm')
+    op.drop_table('GTRXHOP_BSC6910GSM', schema='huawei_gexport_gsm')

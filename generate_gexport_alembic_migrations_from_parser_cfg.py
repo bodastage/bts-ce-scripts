@@ -11,16 +11,26 @@ import os
 import sys
 import csv
 
-if len(sys.argv) != 4:
-    print("Format: {0} {1} {2} {3}".format(os.path.basename(__file__), "<schema>", "<netype>", "<parser config file>"))
+if len(sys.argv) != 4 and len(sys.argv) != 3:
+    print("Format 1: {0} {1} {2} {3}".format(os.path.basename(__file__), "<schema>", "<netype>", "<parser config file>"))
+    print("Format 2: {0} {1} {2}".format(os.path.basename(__file__), "<schema>", "<parser config file>"))
     sys.exit()
 
 schema = sys.argv[1]
-ne_type = sys.argv[2]
-parser_cfg = sys.argv[3]
+ne_type = None
+parser_cfg = None
+
+if len(sys.argv) == 3:
+    parser_cfg = sys.argv[2]
+    ne_type = ""
+else:
+    ne_type = format("_{}",sys.argv[2])
+    parser_cfg = sys.argv[3]
+
 
 mo_list = []
 
+print("def upgrade():")
 with open(parser_cfg) as f:
     data = f.readlines()
 
@@ -32,17 +42,17 @@ with open(parser_cfg) as f:
 
         parameters = mo_and_params[1]
         param_list = parameters.split(",")
-        print("op.create_table('{}_{}',".format(mo, ne_type))
+        print("    op.create_table('{}{}',".format(mo, ne_type))
         for param in param_list:
             if param == 'DATETIME' or param == 'varDateTime':
-                print("    sa.Column('{}', sa.DateTime, autoincrement=False, nullable=True),".format(param))
+                print("        sa.Column('{}', sa.DateTime, autoincrement=False, nullable=True),".format(param))
             else:
-                print("    sa.Column('{}', sa.CHAR(length=250), autoincrement=False, nullable=True),".format(param))
-        print("schema='{}'".format(schema))
-        print(")")
+                print("        sa.Column('{}', sa.CHAR(length=250), autoincrement=False, nullable=True),".format(param))
+        print("        schema='{}'".format(schema))
+        print("    )")
         print("")
 
 
-
+print("def downgrade():")
 for mo in mo_list:
-    print("op.drop_table('{}_{}', schema='{}')".format(mo, ne_type, schema))
+    print("    op.drop_table('{}{}', schema='{}')".format(mo, ne_type, schema))

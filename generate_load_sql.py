@@ -20,37 +20,37 @@ print("")
 
 for file in os.listdir(folder_name):
 
-	colunms=[]
-	full_path = folder_name + os.path.sep + file
+    colunms=[]
+    full_path = folder_name + os.path.sep + file
 
-	
-	filename = os.path.basename(file)
 
-	with open(full_path, 'r') as csvfile:
-		reader = csv.reader(csvfile, quoting=csv.QUOTE_NONE)
-		for row in reader:
-			colunms=row
-			break
-		
-	#column_list = "\"" + "\",\"".join(colunms) + "\"";
-	column_list = ",".join(colunms);
-	
-	#if filename == '.gitignore': continue
+    filename = os.path.basename(file)
 
-	mo_name = filename.replace(".csv","")
-	
-	#Comment in file 
-	print("")
-	print("-- {0}".format(mo_name))
-	print("-- ---------------------------")
-	
-	#@TODO: Back data in history schema 
-	#history_schema=schema+"_history"
-	#print( "\COPY {0}.{1}({2}) FROM '{3}.{1}'".format(schema,mo_name,history_schema))
-	
-	#truncate table 
-	print( "TRUNCATE TABLE {0}.{1};".format(schema,mo_name,column_list,full_path))
-	
-	#Copy from file to table 
-	#print( "\COPY {0}.{1}({2}) FROM '{3}' CSV HEADER;".format(schema,mo_name,column_list,full_path)) #Specifiy the columns
-	print( "\COPY {0}.{1} FROM '{2}' CSV HEADER;".format(schema,mo_name,full_path)) #This assumes the columns in the csv file match the table columns
+    with open(full_path, 'r') as csvfile:
+        reader = csv.reader(csvfile, quoting=csv.QUOTE_NONE)
+        for row in reader:
+            colunms=row
+            break
+
+    #column_list = "\"" + "\",\"".join(colunms) + "\"";
+    column_list = ",".join(colunms);
+
+    #if filename == '.gitignore': continue
+
+    mo_name = filename.replace(".csv","")
+
+    #Comment in file
+    print("")
+    print("-- {0}".format(mo_name))
+    print("-- ---------------------------")
+
+    #@TODO: Back data in history schema
+    #history_schema=schema+"_history"
+    #print( "\COPY {0}.{1}({2}) FROM '{3}.{1}'".format(schema,mo_name,history_schema))
+
+    #truncate table
+    print( "TRUNCATE TABLE {0}.{1};".format(schema,mo_name,column_list,full_path))
+
+    #Copy from file to table
+    #print( "\COPY {0}.{1}({2}) FROM '{3}' CSV HEADER;".format(schema,mo_name,column_list,full_path)) #Specifiy the columns
+    print( "\COPY {0}.{1} FROM '{2}' CSV HEADER;".format(schema,mo_name,full_path)) #This assumes the columns in the csv file match the table columns
