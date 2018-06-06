@@ -16,26 +16,26 @@ import sys
 import csv
 
 if len(sys.argv) != 2: 
-	print("Format: {0} {1}".format( os.path.basename(__file__), "<input_directory>"))
-	sys.exit()
-	
+    print("Format: {0} {1}".format( os.path.basename(__file__), "<input_directory>"))
+    sys.exit()
+
 
 folder_name=sys.argv[1] 
 
 for file in os.listdir(folder_name):
-	columns = []
-	full_path = folder_name + os.path.sep + file
-	
-	if file == ".gitignore" : continue
-		
-	with open(full_path, 'r') as csvfile:
-		reader = csv.reader(csvfile, quoting=csv.QUOTE_NONE)
-		for row in reader:
-			if len(columns) == 0:
-				columns = row 
-				break 
+    columns = []
+    full_path = folder_name + os.path.sep + file
 
-	filename = os.path.basename(file)
+    if file == ".gitignore" : continue
 
-	mo_name = filename.replace(".csv","")
-	print( "{0}:{1}".format( mo_name, ",".join(columns)) )
+    with open(full_path, 'r') as csvfile:
+        reader = csv.reader(csvfile, quoting=csv.QUOTE_NONE)
+        for row in reader:
+            if len(columns) == 0:
+                columns = row
+                break
+
+    filename = os.path.basename(file)
+
+    mo_name = filename.replace(".csv","")
+    print( "{0}:{1}".format( mo_name, ",".join(columns)) )

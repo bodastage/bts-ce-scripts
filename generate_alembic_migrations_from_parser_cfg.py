@@ -1,8 +1,8 @@
 # Generate gexport alembic migration script from parser config
 #
-# generate_gexport_alembic_migrations_from_parser_cfg.py huawei_gexport_gsm BSC6900GSM /mediation/conf/cm/gexport_gsm.cfg
+# generate_alembic_migrations_from_parser_cfg.py huawei_gexport_gsm BSC6900GSM /mediation/conf/cm/gexport_gsm.cfg
 #
-# Example: python generate_gexport_alembic_migrations_from_parser_cfg.py huawei_gexport_gsm "data/cm/conf/gexport_gsm.cfg"
+# Example: python generate_alembic_migrations_from_parser_cfg.py huawei_gexport_gsm "data/cm/conf/gexport_gsm.cfg"
 
 # Licence: Apache 2.0
 #
@@ -10,6 +10,7 @@
 import os
 import sys
 import csv
+import logging
 
 if len(sys.argv) != 4 and len(sys.argv) != 3:
     print("Format 1: {0} {1} {2} {3}".format(os.path.basename(__file__), "<schema>", "<netype>", "<parser config file>"))
@@ -24,11 +25,19 @@ if len(sys.argv) == 3:
     parser_cfg = sys.argv[2]
     ne_type = ""
 else:
-    ne_type = format("_{}",sys.argv[2])
+    ne_type = "_{}".format(sys.argv[2])
     parser_cfg = sys.argv[3]
 
 
 mo_list = []
+
+text_fields = ["LAI","CAPACITYLOCKS","UMFI_IDLE","ULPRIOTHR","UQRXLEVMIN","COVERAGEU","UHPRIOTHR", "reservedBy",
+                "certificateContent_publicKey", "sectorCarrierRef", "trustedCertificates", "consistsOf","consistsOf","listOfNe",
+                "equipmentClockPriorityTable","rfBranchRef", "syncRiPortCandidate", "transceiverRef","vsdatamulticastantennabranch",
+                "associatedRadioNodes","ethernetPortRef","staticRoutes_ipAddress", "staticRoutes_networkMask",
+                "staticRoutes_nextHopIpAddr","staticRoutes_redistribute","ipInterfaceMoRef","ipAccessHostRef",
+                "physicalPortList","additionalText","candNeighborRel_enbId", "vlanRef","trDeviceRef","port","iubLinkUtranCell",
+                "manages","iubLinkUtranCell", "FREQLST"]
 
 print("def upgrade():")
 with open(parser_cfg) as f:
@@ -46,6 +55,8 @@ with open(parser_cfg) as f:
         for param in param_list:
             if param == 'DATETIME' or param == 'varDateTime':
                 print("        sa.Column('{}', sa.DateTime, autoincrement=False, nullable=True),".format(param))
+            elif param in text_fields or param[-3:].lower() == 'ref':
+                print("        sa.Column('{}', sa.Text, autoincrement=False, nullable=True),".format(param))
             else:
                 print("        sa.Column('{}', sa.CHAR(length=250), autoincrement=False, nullable=True),".format(param))
         print("        schema='{}'".format(schema))

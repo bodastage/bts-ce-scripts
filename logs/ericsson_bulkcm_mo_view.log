@@ -1,0 +1,5792 @@
+
+AlarmIRP = ReplaceableObject(
+    'ericsson_cm_3g."AlarmIRP"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "ManagementNode_id",
+        "IRPAgent_id",
+        "AlarmIRP_id",
+        "irpVersion"
+    FROM
+    ericsson_bulkcm."AlarmIRP"
+    
+    """
+    )
+
+BulkCmIRP = ReplaceableObject(
+    'ericsson_cm_3g."BulkCmIRP"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "ManagementNode_id",
+        "IRPAgent_id",
+        "BulkCmIRP_id",
+        "irpVersion"
+    FROM
+    ericsson_bulkcm."BulkCmIRP"
+    
+    """
+    )
+
+ExternalGsmCell = ReplaceableObject(
+    'ericsson_cm_3g."ExternalGsmCell"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."ExternalGsmCell_id",
+t1."mnc",
+t1."mcc",
+t1."lac",
+t1."bcchFrequency",
+t1."ncc",
+t1."bcc",
+t1."userLabel",
+t1."cellIdentity",
+t2."vsDataExternalGsmCell_id",
+t2."dtmSupport",
+t2."maxTxPowerUl",
+t2."qRxLevMin",
+t2."individualOffset",
+t2."bandIndicator",
+t2."parentSystem",
+t2."mncLength",
+t2."rac",
+t2."rimCapable"
+FROM
+ericsson_bulkcm."ExternalGsmCell" t1
+INNER JOIN ericsson_bulkcm."vsDataExternalGsmCell" t2
+ ON t1."ExternalGsmCell_id" = t2."ExternalGsmCell_id" 
+ AND t1."varDateTime" = t2."varDateTime" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."FileName" = t2."FileName" 
+
+"""
+)
+
+ExternalUtranCell = ReplaceableObject(
+    'ericsson_cm_3g."ExternalUtranCell"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."ExternalUtranCell_id",
+t1."rac",
+t1."lac",
+t1."primaryCpichPower",
+t1."primaryScramblingCode",
+t1."uarfcnDl",
+t1."uarfcnUl",
+t1."mnc",
+t1."mcc",
+t1."rncId",
+t1."cId",
+t1."userLabel",
+t2."vsDataExternalUtranCell_id",
+t2."individualOffset",
+t2."maxTxPowerUl",
+t2."qQualMin",
+t2."qRxLevMin",
+t2."agpsEnabled",
+t2."cellCapability_hsdschSupport",
+t2."cellCapability_edchSupport",
+t2."cellCapability_edchTti2Support",
+t2."cellCapability_enhancedL2Support",
+t2."cellCapability_fdpchSupport",
+t2."cellCapability_multiCarrierSupport",
+t2."cellCapability_cpcSupport",
+t2."cellCapability_qam64MimoSupport",
+t2."transmissionScheme",
+t2."parentSystem",
+t2."mncLength",
+t2."hsAqmCongCtrlSpiSupport",
+t2."hsAqmCongCtrlSupport",
+t2."srvccCapability",
+t2."reportingRange1a",
+t2."reportingRange1b",
+t2."timeToTrigger1a",
+t2."timeToTrigger1b",
+t2."rimCapable",
+t2."lbUtranCellOffloadCapacity",
+t2."cellCapability"
+FROM
+ericsson_bulkcm."ExternalUtranCell" t1
+INNER JOIN ericsson_bulkcm."vsDataExternalUtranCell" t2
+ ON t1."ExternalUtranCell_id" = t2."ExternalUtranCell_id" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."FileName" = t2."FileName" 
+ AND t1."varDateTime" = t2."varDateTime" 
+
+"""
+)
+
+GsmRelation = ReplaceableObject(
+    'ericsson_cm_3g."GsmRelation"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."SubNetwork_2_id",
+t1."MeContext_id",
+t1."ManagedElement_id",
+t1."RncFunction_id",
+t1."UtranCell_id",
+t1."GsmRelation_id",
+t1."adjacentCell",
+t2."vsDataGsmRelation_id",
+t2."qOffset1sn",
+t2."mobilityRelationType",
+t2."selectionPriority"
+FROM
+ericsson_bulkcm."GsmRelation" t1
+INNER JOIN ericsson_bulkcm."vsDataGsmRelation" t2
+ ON t1."MeContext_id" = t2."MeContext_id" 
+ AND t1."UtranCell_id" = t2."UtranCell_id" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."SubNetwork_2_id" = t2."SubNetwork_2_id" 
+ AND t1."ManagedElement_id" = t2."ManagedElement_id" 
+ AND t1."GsmRelation_id" = t2."GsmRelation_id" 
+ AND t1."varDateTime" = t2."varDateTime" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+ AND t1."RncFunction_id" = t2."RncFunction_id" 
+ AND t1."FileName" = t2."FileName" 
+
+"""
+)
+
+IRPAgent = ReplaceableObject(
+    'ericsson_cm_3g."IRPAgent"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "ManagementNode_id",
+        "IRPAgent_id",
+        "systemDN"
+    FROM
+    ericsson_bulkcm."IRPAgent"
+    
+    """
+    )
+
+IubLink = ReplaceableObject(
+    'ericsson_cm_3g."IubLink"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."SubNetwork_2_id",
+t1."MeContext_id",
+t1."ManagedElement_id",
+t1."RncFunction_id",
+t1."IubLink_id",
+t1."userLabel",
+t1."iubLinkUtranCell",
+t1."iubLinkNodeBFunction",
+t2."vsDataIubLink_id",
+t2."rbsId",
+t2."dlHwAdm",
+t2."ulHwAdm",
+t2."rncModuleRef",
+t2."userPlaneTransportOption_atm",
+t2."userPlaneTransportOption_ipv4",
+t2."controlPlaneTransportOption_atm",
+t2."controlPlaneTransportOption_ipv4",
+t2."userPlaneIpResourceRef",
+t2."administrativeState",
+t2."remoteCpIpAddress1",
+t2."remoteCpIpAddress2",
+t2."sctpRef",
+t2."l2EstReqRetryTimeNbapC",
+t2."l2EstReqRetryTimeNbapD",
+t2."atmUserPlaneTermSubrackRef",
+t2."cachedRemoteCpIpAddress1",
+t2."cachedRemoteCpIpAddress2",
+t2."userPlaneGbrAdmEnabled",
+t2."userPlaneGbrAdmBandwidthDl",
+t2."userPlaneGbrAdmBandwidthUl",
+t2."userPlaneGbrAdmMarginDl",
+t2."userPlaneGbrAdmMarginUl",
+t2."softCongThreshGbrBwDl",
+t2."softCongThreshGbrBwUl",
+t2."spare",
+t2."spareA",
+t2."poolRedundancy",
+t2."rncModulePreferredRef",
+t2."rncModuleAllocWeight",
+t2."linkType"
+FROM
+ericsson_bulkcm."IubLink" t1
+INNER JOIN ericsson_bulkcm."vsDataIubLink" t2
+ ON t1."MeContext_id" = t2."MeContext_id" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."SubNetwork_2_id" = t2."SubNetwork_2_id" 
+ AND t1."ManagedElement_id" = t2."ManagedElement_id" 
+ AND t1."FileName" = t2."FileName" 
+ AND t1."varDateTime" = t2."varDateTime" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+ AND t1."RncFunction_id" = t2."RncFunction_id" 
+ AND t1."IubLink_id" = t2."IubLink_id" 
+
+"""
+)
+
+ManagedElement = ReplaceableObject(
+    'ericsson_cm_3g."ManagedElement"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."SubNetwork_2_id",
+t1."MeContext_id",
+t1."ManagedElement_id",
+t1."locationName",
+t1."userDefinedState",
+t1."vendorName",
+t1."userLabel",
+t1."managedElementType",
+t1."swVersion",
+t1."managedBy",
+t1."dnPrefix",
+t1."sourceType",
+t1."release",
+t1."siteRef",
+t2."vsDataManagedElement_id",
+t2."productType",
+t2."productName",
+t2."productNumber",
+t2."productRevision",
+t2."prodDesignation",
+t2."logicalName",
+t2."autoRestartRbs",
+t2."generateAlarm",
+t2."initCollectTraces",
+t2."mirrorRelease",
+t2."siteLocation",
+t2."timeZone",
+t2."dateTimeOffset",
+t2."localDateTime"
+FROM
+ericsson_bulkcm."ManagedElement" t1
+INNER JOIN ericsson_bulkcm."vsDataManagedElement" t2
+ ON t1."MeContext_id" = t2."MeContext_id" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."SubNetwork_2_id" = t2."SubNetwork_2_id" 
+ AND t1."ManagedElement_id" = t2."ManagedElement_id" 
+ AND t1."FileName" = t2."FileName" 
+ AND t1."varDateTime" = t2."varDateTime" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+
+"""
+)
+
+ManagementNode = ReplaceableObject(
+    'ericsson_cm_3g."ManagementNode"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "ManagementNode_id",
+        "manages",
+        "userDefinedState",
+        "locationName",
+        "userLabel",
+        "swVersion",
+        "vendorName"
+    FROM
+    ericsson_bulkcm."ManagementNode"
+    
+    """
+    )
+
+MeContext = ReplaceableObject(
+    'ericsson_cm_3g."MeContext"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."SubNetwork_2_id",
+t1."MeContext_id",
+t1."dnPrefix",
+t1."userLabel",
+t1."ipAddress",
+t1."segmentName",
+t1."mimSwitchPolicy",
+t1."neMIMversion",
+t1."compatibilityOfMIMs",
+t1."connectionStatus",
+t1."mirrorMIBsynchStatus",
+t1."mirrorMIBupdateStatus",
+t1."generationCounter",
+t1."neMIMName",
+t1."neType",
+t1."neCreationComplete",
+t1."restartWarning",
+t1."rollbackMirrorMIBname",
+t1."neSecurityStatus",
+t1."bcrLastChange",
+t1."bctLastChange",
+t1."telisLastChange",
+t1."lostSynchronisation",
+t1."nodeStartTime",
+t1."pendingRestart",
+t1."rbsGroupRef",
+t2."vsDataMeContext_id",
+t2."multiStandardRbs6k",
+t2."mixedModeRadio",
+t2."mirrorMIBversion",
+t2."stnNodes",
+t2."associatedNodes",
+t2."associatedRadioNodes",
+t2."associatedPicoNodes",
+t2."rbsIubId",
+t2."notificationsSupported",
+t2."upgradeMethodCapability",
+t2."createUpgradePackageCapability",
+t2."lastProcessedEventTime",
+t2."associatedRnc"
+FROM
+ericsson_bulkcm."MeContext" t1
+INNER JOIN ericsson_bulkcm."vsDataMeContext" t2
+ ON t1."MeContext_id" = t2."MeContext_id" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."SubNetwork_2_id" = t2."SubNetwork_2_id" 
+ AND t1."FileName" = t2."FileName" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+ AND t1."varDateTime" = t2."varDateTime" 
+
+"""
+)
+
+NodeBFunction = ReplaceableObject(
+    'ericsson_cm_3g."NodeBFunction"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."SubNetwork_2_id",
+t1."MeContext_id",
+t1."ManagedElement_id",
+t1."NodeBFunction_id",
+t1."nodeBFunctionIubLink",
+t1."userLabel",
+t1."nodeSCProfileID",
+t1."eulNoReschUsers",
+t1."eulTargetRate",
+t1."eulMaxShoRate",
+t1."eulSchedulingWeight",
+t1."eulNonServHwRate",
+t1."eulLowRate",
+t1."eulMaxAllowedSchRate",
+t2."vsDataNodeBFunction_id",
+t2."toaeDch",
+t2."branchDiffAbsTime",
+t2."toaeCch",
+t2."branchDiffMeasTime",
+t2."steeredHsAllocation",
+t2."ulLicFractBbPool2",
+t2."dlLicFractBbPool2",
+t2."iafAnrState",
+t2."nbapDscp",
+t2."analogUlAlignIsActive",
+t2."sharedEquipmentController",
+t2."featureStateStandardizedTma",
+t2."featureStateStandardizedRet",
+t2."featureStateDualStackIub",
+t2."featureStateEul2msTti",
+t2."featureStateDlPowerControlEul",
+t2."featureStateGrake",
+t2."featureStateMbmsIubEfficiency",
+t2."featureState16Qam",
+t2."featureState64Qam",
+t2."featureStateHsdpaFlexibleScheduler",
+t2."featureStateHsdpaImprovedLinkAdaptation",
+t2."featureStateRetCascading",
+t2."availableRbsChannelElementsDownlink",
+t2."availableRbsChannelElementsUplink",
+t2."licenseCapacityRbsChannelElementsDownlink",
+t2."licenseCapacityRbsChannelElementsUplink",
+t2."featureStateEulForLargeRbsConfig",
+t2."featureStateIncrNumHsCodes",
+t2."eul2msFirstSchedStep",
+t2."featureStatePerHarqProcessGrant",
+t2."featureStateDualTmaSupport",
+t2."featureStateHsdpaMinBitRate",
+t2."eulDchMaxAllowedSchRate",
+t2."featureStateAbsoluteTimeSynch",
+t2."featureStateMixedMode",
+t2."featureStateHsdpaRbrQosProfiling",
+t2."featureStateInterferenceSuppression",
+t2."featureStatePsiCoverage",
+t2."eulInactivityHighRateTime",
+t2."eulInactivityLowRateTime",
+t2."featureStateCeCapEul",
+t2."featureStateHsAqmCongCtrl",
+t2."featureStateRbsMpLoadSharing",
+t2."licenseCapacityChannelElementDl",
+t2."licenseCapacityChannelElementUl",
+t2."spare",
+t2."featureStateUlFcc",
+t2."eulFachInitialRate",
+t2."featureStateIntSuppEul10ms",
+t2."technicianPresent",
+t2."eulLowUsageTime",
+t2."featureStateCeExtForEul",
+t2."featureStateIncreasedHsCodeCap",
+t2."alarmSuppressed",
+t2."featureStateHsdpaMcInterDuSched",
+t2."hsdpaMcInterDuSchedCapability",
+t2."featureStateCombinedCell",
+t2."featureStateImprovedDAgc",
+t2."eulMaxTotalProtectedRate",
+t2."licenseStateHsOlpc",
+t2."featureStateIntSuppAllBearers",
+t2."eulFachMaxDynAllocation",
+t2."eulFachMinAllocation",
+t2."featureStateCeEfficiencyEul",
+t2."featureStateIncreasedCellCarrierSupport",
+t2."ulLicFractBbPool",
+t2."dlLicFractBbPool",
+t2."featureStateUlCoMpReception",
+t2."ulCoMpCapability",
+t2."antennaDeviceScanStatus",
+t2."featureStateEulLowLatencyPresched",
+t2."stnNodes",
+t2."release",
+t2."dualBandSectorGroup1",
+t2."dualBandSectorGroup2",
+t2."dualBandSectorGroup3",
+t2."dualBandSectorGroup4",
+t2."dualBandSectorGroup5",
+t2."dualBandSectorGroup6",
+t2."featureStateMultiSectorPerRadio",
+t2."featureStateUlSpectrumAnalyzer",
+t2."nonEqPwrCommonPrecoderState"
+FROM
+ericsson_bulkcm."NodeBFunction" t1
+INNER JOIN ericsson_bulkcm."vsDataNodeBFunction" t2
+ ON t1."MeContext_id" = t2."MeContext_id" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."SubNetwork_2_id" = t2."SubNetwork_2_id" 
+ AND t1."ManagedElement_id" = t2."ManagedElement_id" 
+ AND t1."varDateTime" = t2."varDateTime" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+ AND t1."NodeBFunction_id" = t2."NodeBFunction_id" 
+ AND t1."FileName" = t2."FileName" 
+
+"""
+)
+
+NotificationIRP = ReplaceableObject(
+    'ericsson_cm_3g."NotificationIRP"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "ManagementNode_id",
+        "IRPAgent_id",
+        "NotificationIRP_id",
+        "irpVersion"
+    FROM
+    ericsson_bulkcm."NotificationIRP"
+    
+    """
+    )
+
+RncFunction = ReplaceableObject(
+    'ericsson_cm_3g."RncFunction"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."SubNetwork_2_id",
+t1."MeContext_id",
+t1."ManagedElement_id",
+t1."RncFunction_id",
+t1."userLabel",
+t1."mcc",
+t1."mnc",
+t1."rncId",
+t2."vsDataRncFunction_id",
+t2."mncLength",
+t2."emergencyCallRedirect",
+t2."loadSharingDirRetryEnabled",
+t2."hsCellChangeAllowed",
+t2."hsOnlyBestCell",
+t2."aliasPlmnIdentities_mcc",
+t2."aliasPlmnIdentities_mnc",
+t2."ctrFileSize",
+t2."gpehDataLevel",
+t2."gpehFileSize",
+t2."loadSharingRrcEnabled",
+t2."uetrFileSize",
+t2."networkResourceIdentifierLengthCs",
+t2."networkResourceIdentifierLengthPs",
+t2."hsToDchTrigger_servHsChangeInterRnc",
+t2."hsToDchTrigger_servHsChangeIntraRnc",
+t2."hsToDchTrigger_changeOfBestCellIntraRnc",
+t2."hsToDchTrigger_poorQualityDetected",
+t2."hsToDchTrigger_changeOfBestCellInterRnc",
+t2."ecLocationAttemptUmts",
+t2."ecCnSbhoRequestIgnore",
+t2."ecCnPriorityLevel",
+t2."ecSbhoTimer",
+t2."primaryCnOperatorRef",
+t2."highPrioScanReserve",
+t2."maxPowerOverloadHystTime",
+t2."nbapDscp",
+t2."mocnExternalNriMatching",
+t2."maxAllowedGbrDlPsStream",
+t2."nbapAuditInterval",
+t2."pcapPositioningMode",
+t2."iuSccpConRateMeasPeriod",
+t2."iuSccpConRateThresh",
+t2."intraNodeIpResourceRef",
+t2."initialIuAccessRateMax",
+t2."evolvedHsUePrioEnabled",
+t2."evolvedHsUePrioLevel",
+t2."evolvedHsUePrioLoadThresh",
+t2."cyclicAcb_acbEnabled",
+t2."cyclicAcb_rotationGroupSize",
+t2."cyclicAcbCs_acbEnabled",
+t2."cyclicAcbCs_rotationGroupSize",
+t2."cyclicAcbPs_acbEnabled",
+t2."cyclicAcbPs_rotationGroupSize",
+t2."cyclicAcbRotationTime",
+t2."spare",
+t2."ctchAdmCtrl",
+t2."hsFachEnabled",
+t2."fastDormancyMethod",
+t2."enhUeDrxEnabled",
+t2."amrNbMmMrUlTfcRepeat",
+t2."cbsFirstMsgDelayMargin",
+t2."rimUtraSiRetries",
+t2."rimUtraSiTimeout",
+t2."rncType",
+t2."spareA",
+t2."spareB",
+t2."spareC",
+t2."eulFachEnabled",
+t2."robustRwrEutraEnabled",
+t2."offloadDedicPrioEutraTime",
+t2."offloadDedicPrioEutraEnabled",
+t2."mocnDedicPrioEutraEnabled",
+t2."eulUsersAdmEulHsCcEnabled",
+t2."nwInitCallReestTime",
+t2."csPriorityRabSetupTime",
+t2."aliasPlmnIdentities"
+FROM
+ericsson_bulkcm."RncFunction" t1
+INNER JOIN ericsson_bulkcm."vsDataRncFunction" t2
+ ON t1."MeContext_id" = t2."MeContext_id" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."SubNetwork_2_id" = t2."SubNetwork_2_id" 
+ AND t1."ManagedElement_id" = t2."ManagedElement_id" 
+ AND t1."FileName" = t2."FileName" 
+ AND t1."varDateTime" = t2."varDateTime" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+ AND t1."RncFunction_id" = t2."RncFunction_id" 
+
+"""
+)
+
+SubNetwork = ReplaceableObject(
+    'ericsson_cm_3g."SubNetwork"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id"
+    FROM
+    ericsson_bulkcm."SubNetwork"
+    
+    """
+    )
+
+SubNetwork_2 = ReplaceableObject(
+    'ericsson_cm_3g."SubNetwork_2"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "userDefinedNetworkType",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."SubNetwork_2"
+    
+    """
+    )
+
+UtranCell = ReplaceableObject(
+    'ericsson_cm_3g."UtranCell"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."SubNetwork_2_id",
+t1."MeContext_id",
+t1."ManagedElement_id",
+t1."RncFunction_id",
+t1."UtranCell_id",
+t1."localCellId",
+t1."uarfcnUl",
+t1."uarfcnDl",
+t1."primaryScramblingCode",
+t1."primaryCpichPower",
+t1."maximumTransmissionPower",
+t1."primarySchPower",
+t1."cId",
+t1."userLabel",
+t1."secondarySchPower",
+t1."bchPower",
+t1."lac",
+t1."rac",
+t1."sac",
+t1."utranCellIubLink",
+t1."uraList",
+t1."creationTime",
+t2."vsDataUtranCell_id",
+t2."lbUtranCellOffloadCapacity",
+t2."tCell",
+t2."cellReserved",
+t2."anrBlackList",
+t2."treSelection",
+t2."qualMeasQuantity",
+t2."qHyst1",
+t2."qHyst2",
+t2."qQualMin",
+t2."qRxLevMin",
+t2."individualOffset",
+t2."pwrAdm",
+t2."pwrOffset",
+t2."pwrHyst",
+t2."tmCongAction",
+t2."releaseAseDl",
+t2."aseDlAdm",
+t2."dlCodeAdm",
+t2."aseUlAdm",
+t2."sf8Adm",
+t2."sf32Adm",
+t2."minPwrRl",
+t2."maxRate",
+t2."interRate",
+t2."minimumRate",
+t2."maxPwrMax",
+t2."interPwrMax",
+t2."minPwrMax",
+t2."compModeAdm",
+t2."iFHyst",
+t2."iFCong",
+t2."interFreqFddMeasIndicator",
+t2."sRatSearch",
+t2."sIntraSearch",
+t2."sInterSearch",
+t2."fachMeasOccaCycLenCoeff",
+t2."accessClassNBarred",
+t2."utranCellPosition",
+t2."maxTxPowerUl",
+t2."reservedBy",
+t2."sib1PlmnScopeValueTag",
+t2."sf16Adm",
+t2."hoType",
+t2."usedFreqThresh2dEcno",
+t2."usedFreqThresh2dRscp",
+t2."administrativeState",
+t2."loadSharingGsmThreshold",
+t2."loadSharingGsmFraction",
+t2."snDirectedRetryTarget",
+t2."rlFailureT",
+t2."nOutSyncInd",
+t2."sf4AdmUl",
+t2."hardIfhoCorr",
+t2."hsdpaUsersAdm",
+t2."loadSharingMargin",
+t2."sHcsRat",
+t2."sf16gAdm",
+t2."releaseAseDlNg",
+t2."tmCongActionNg",
+t2."tmInitialG",
+t2."sf16AdmUl",
+t2."sf8AdmUl",
+t2."sf8gAdmUl",
+t2."iubLinkRef",
+t2."eulNonServingCellUsersAdm",
+t2."eulServingCellUsersAdm",
+t2."agpsEnabled",
+t2."codeLoadThresholdDlSf128",
+t2."pwrLoadThresholdDlSpeech_amr12200",
+t2."pwrLoadThresholdDlSpeech_amr7950",
+t2."pwrLoadThresholdDlSpeech_amr5900",
+t2."pwrLoadThresholdDlSpeech_amrWb8850",
+t2."pwrLoadThresholdDlSpeech_amrWb12650",
+t2."aseLoadThresholdUlSpeech_amr12200",
+t2."aseLoadThresholdUlSpeech_amr7950",
+t2."aseLoadThresholdUlSpeech_amr5900",
+t2."aseLoadThresholdUlSpeech_amrWb8850",
+t2."aseLoadThresholdUlSpeech_amrWb12650",
+t2."accessClassesBarredCs",
+t2."accessClassesBarredPs",
+t2."rateSelectionPsInteractive_channelType",
+t2."rateSelectionPsInteractive_ulPrefRate",
+t2."rateSelectionPsInteractive_dlPrefRate",
+t2."hcsUsage_idleMode",
+t2."hcsUsage_connectedMode",
+t2."hcsSib3Config_hcsPrio",
+t2."hcsSib3Config_qHcs",
+t2."hcsSib3Config_sSearchHcs",
+t2."amrWbRateUlMax",
+t2."amrWbRateDlMax",
+t2."antennaPosition_latitudeSign",
+t2."antennaPosition_latitude",
+t2."antennaPosition_longitude",
+t2."mocnCellProfileRef",
+t2."standAloneSrbSelector",
+t2."amrNbSelector",
+t2."eulServingCellUsersAdmTti2",
+t2."cellBroadcastSac",
+t2."ctchOccasionPeriod",
+t2."transmissionScheme",
+t2."loadBasedHoSupport",
+t2."useId",
+t2."cbsSchedulePeriodLength",
+t2."fdpchSupport",
+t2."ganHoEnabled",
+t2."loadBasedHoType",
+t2."serviceRestrictions_csVideoCalls",
+t2."hsIflsThreshUsers",
+t2."hsIflsMarginUsers",
+t2."dchIflsThreshPower",
+t2."dchIflsThreshCode",
+t2."dchIflsMarginPower",
+t2."dchIflsMarginCode",
+t2."pathlossThreshold",
+t2."iflsMode",
+t2."cpcSupport",
+t2."absPrioCellRes_cellReselectionPriority",
+t2."absPrioCellRes_sPrioritySearch1",
+t2."absPrioCellRes_sPrioritySearch2",
+t2."absPrioCellRes_threshServingLow",
+t2."absPrioCellRes_measIndFach",
+t2."spare",
+t2."secondaryCpichPower",
+t2."ctchAdmMargin",
+t2."rrcLcEnabled",
+t2."mixedModeRadio",
+t2."sf128Adm",
+t2."sf64AdmUl",
+t2."admBlockRedirection_gsmRrc",
+t2."admBlockRedirection_rrc",
+t2."admBlockRedirection_speech",
+t2."dmcrEnabled",
+t2."hsIflsHighLoadThresh",
+t2."hsIflsSpeechMultiRabTrigg",
+t2."cyclicAcb_acbEnabled",
+t2."cyclicAcb_rotationGroupSize",
+t2."cyclicAcbCs_acbEnabled",
+t2."cyclicAcbCs_rotationGroupSize",
+t2."cyclicAcbPs_acbEnabled",
+t2."cyclicAcbPs_rotationGroupSize",
+t2."releaseRedirect",
+t2."releaseRedirectEutraTriggers_csFallbackCsRelease",
+t2."releaseRedirectEutraTriggers_csFallbackDchToFach",
+t2."releaseRedirectEutraTriggers_dchToFach",
+t2."releaseRedirectEutraTriggers_fachToUra",
+t2."releaseRedirectEutraTriggers_fastDormancy",
+t2."releaseRedirectEutraTriggers_normalRelease",
+t2."spareA",
+t2."srbAdmExempt",
+t2."reportingRange1a",
+t2."reportingRange1b",
+t2."timeToTrigger1a",
+t2."timeToTrigger1b",
+t2."downswitchTimer",
+t2."hsdschInactivityTimer",
+t2."hsdschInactivityTimerCpc",
+t2."inactivityTimeMultiPsInteractive",
+t2."inactivityTimer",
+t2."inactivityTimerEnhUeDrx",
+t2."inactivityTimerPch",
+t2."redirectUarfcn",
+t2."dnclEnabled",
+t2."servDiffRrcAdmHighPrioProfile",
+t2."anrIafUtranCellConfig_anrEnabled",
+t2."anrIafUtranCellConfig_relationAddEnabled",
+t2."dlCodeOffloadLimit",
+t2."dlPowerOffloadLimit",
+t2."hsdpaUsersOffloadLimit",
+t2."hsIflsDownswitchTrigg_toFach",
+t2."hsIflsDownswitchTrigg_toUra",
+t2."hsIflsDownswitchTrigg_fastDormancy",
+t2."hsIflsPowerLoadThresh",
+t2."hsIflsRedirectLoadLimit",
+t2."hsIflsTrigger_fromFach",
+t2."hsIflsTrigger_fromUra",
+t2."iflsCpichEcnoThresh",
+t2."iflsRedirectUarfcn",
+t2."releaseRedirectHsIfls",
+t2."pagingPermAccessCtrl_locRegAcb",
+t2."pagingPermAccessCtrl_locRegRestr",
+t2."pagingPermAccessCtrl_pagingRespRestr",
+t2."ueHsThpMeasSupport",
+t2."updateLocator",
+t2."autoAcbRcssrThresh",
+t2."autoAcbRtwpThresh",
+t2."autoAcbMinRcssrInput",
+t2."autoAcbRcssrWeight",
+t2."autoAcbMaxPsClassesToBar",
+t2."autoAcbRtwpWeight",
+t2."autoAcbEnabled",
+t2."supportedCellType",
+t2."rwrEutraCc",
+t2."eulMcServingCellUsersAdmTti2",
+t2."primaryTpsCell",
+t2."tpsPowerLockState",
+t2."tpsCellThresholds_tpsCellThreshEnabled",
+t2."tpsCellThresholds_tpsLockThreshold",
+t2."tpsCellThresholds_tpsUnlockThreshold",
+t2."dlCodePowerCmEnabled",
+t2."poolRedundancy",
+t2."rachOverloadProtect",
+t2."srvccCapability",
+t2."rimCapable",
+t2."ifIratHoPsIntHsEnabled",
+t2."cellUpdateConfirmPsInitRepeat",
+t2."cellUpdateConfirmCsInitRepeat"
+FROM
+ericsson_bulkcm."UtranCell" t1
+INNER JOIN ericsson_bulkcm."vsDataUtranCell" t2
+ ON t1."MeContext_id" = t2."MeContext_id" 
+ AND t1."UtranCell_id" = t2."UtranCell_id" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."SubNetwork_2_id" = t2."SubNetwork_2_id" 
+ AND t1."ManagedElement_id" = t2."ManagedElement_id" 
+ AND t1."RncFunction_id" = t2."RncFunction_id" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+ AND t1."varDateTime" = t2."varDateTime" 
+ AND t1."FileName" = t2."FileName" 
+
+"""
+)
+
+UtranRelation = ReplaceableObject(
+    'ericsson_cm_3g."UtranRelation"',
+    """
+        
+SELECT 
+t1."FileName",
+t1."varDateTime",
+t1."configData_dnPrefix",
+t1."SubNetwork_id",
+t1."SubNetwork_2_id",
+t1."MeContext_id",
+t1."ManagedElement_id",
+t1."RncFunction_id",
+t1."UtranCell_id",
+t1."UtranRelation_id",
+t1."adjacentCell",
+t2."vsDataUtranRelation_id",
+t2."qOffset1sn",
+t2."qOffset2sn",
+t2."loadSharingCandidate",
+t2."selectionPriority",
+t2."frequencyRelationType",
+t2."nodeRelationType",
+t2."hcsSib11Config_hcsPrio",
+t2."hcsSib11Config_qHcs",
+t2."hcsSib11Config_penaltyTime",
+t2."hcsSib11Config_temporaryOffset1",
+t2."hcsSib11Config_temporaryOffset2",
+t2."mobilityRelationType",
+t2."createdBy",
+t2."creationTime"
+FROM
+ericsson_bulkcm."UtranRelation" t1
+INNER JOIN ericsson_bulkcm."vsDataUtranRelation" t2
+ ON t1."MeContext_id" = t2."MeContext_id" 
+ AND t1."UtranCell_id" = t2."UtranCell_id" 
+ AND t1."SubNetwork_id" = t2."SubNetwork_id" 
+ AND t1."SubNetwork_2_id" = t2."SubNetwork_2_id" 
+ AND t1."ManagedElement_id" = t2."ManagedElement_id" 
+ AND t1."FileName" = t2."FileName" 
+ AND t1."UtranRelation_id" = t2."UtranRelation_id" 
+ AND t1."varDateTime" = t2."varDateTime" 
+ AND t1."configData_dnPrefix" = t2."configData_dnPrefix" 
+ AND t1."RncFunction_id" = t2."RncFunction_id" 
+
+"""
+)
+
+Aal0TpVccTp = ReplaceableObject(
+    'ericsson_cm_3g."Aal0TpVccTp"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAal0TpVccTp_id",
+        "alarmReport",
+        "continuityCheck",
+        "nomPmBlkSize",
+        "processorId",
+        "userLabel",
+        "vclTpId",
+        "counterMode"
+    FROM
+    ericsson_bulkcm."vsDataAal0TpVccTp"
+    
+    """
+    )
+
+Aal2Ap = ReplaceableObject(
+    'ericsson_cm_3g."Aal2Ap"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAal2Sp_id",
+        "vsDataAal2Ap_id",
+        "aal2QoSCodePointProfileId",
+        "rpuId",
+        "secondarySigLinkId",
+        "sigLinkId",
+        "timerErq",
+        "timerRel",
+        "userLabel",
+        "allocationMode"
+    FROM
+    ericsson_bulkcm."vsDataAal2Ap"
+    
+    """
+    )
+
+Aal2PathDistributionUnit = ReplaceableObject(
+    'ericsson_cm_3g."Aal2PathDistributionUnit"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAal2Sp_id",
+        "vsDataAal2Ap_id",
+        "vsDataAal2PathDistributionUnit_id",
+        "userLabel",
+        "rpuId",
+        "aal2PathVccTpList"
+    FROM
+    ericsson_bulkcm."vsDataAal2PathDistributionUnit"
+    
+    """
+    )
+
+Aal2PathVccTp = ReplaceableObject(
+    'ericsson_cm_3g."Aal2PathVccTp"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAal2PathVccTp_id",
+        "aal2PathOwner",
+        "alarmReport",
+        "nomPmBlocksize",
+        "timerCu",
+        "userLabel",
+        "administrativeState",
+        "continuityCheck",
+        "aal2PathId",
+        "vclTpId",
+        "aal2QoSAvailableProfiles",
+        "aal2QoSProfileId",
+        "counterMode",
+        "counterActivation"
+    FROM
+    ericsson_bulkcm."vsDataAal2PathVccTp"
+    
+    """
+    )
+
+Aal2QosCodePointProfile = ReplaceableObject(
+    'ericsson_cm_3g."Aal2QosCodePointProfile"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAal2QosCodePointProfile_id",
+        "userLabel",
+        "qualityOfServiceCodePointA",
+        "qualityOfServiceCodePointB",
+        "qualityOfServiceCodePointC",
+        "qualityOfServiceCodePointD"
+    FROM
+    ericsson_bulkcm."vsDataAal2QosCodePointProfile"
+    
+    """
+    )
+
+Aal2QosProfile = ReplaceableObject(
+    'ericsson_cm_3g."Aal2QosProfile"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAal2QosProfile_id",
+        "profileClassA_boundOnProbOfDelay",
+        "profileClassA_boundOnProbOfLoss",
+        "profileClassA_boundOnNodeDelay",
+        "profileClassB_boundOnProbOfDelay",
+        "profileClassB_boundOnProbOfLoss",
+        "profileClassB_boundOnNodeDelay",
+        "profileClassC_boundOnProbOfDelay",
+        "profileClassC_boundOnProbOfLoss",
+        "profileClassC_boundOnNodeDelay",
+        "profileClassD_boundOnProbOfDelay",
+        "profileClassD_boundOnProbOfLoss",
+        "profileClassD_boundOnNodeDelay",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataAal2QosProfile"
+    
+    """
+    )
+
+Aal2RoutingCase = ReplaceableObject(
+    'ericsson_cm_3g."Aal2RoutingCase"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAal2RoutingCase_id",
+        "userLabel",
+        "numberDirection",
+        "routeList",
+        "routePriorityList"
+    FROM
+    ericsson_bulkcm."vsDataAal2RoutingCase"
+    
+    """
+    )
+
+Aal2Sp = ReplaceableObject(
+    'ericsson_cm_3g."Aal2Sp"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAal2Sp_id",
+        "a2ea",
+        "userLabel",
+        "afi"
+    FROM
+    ericsson_bulkcm."vsDataAal2Sp"
+    
+    """
+    )
+
+Aal5TpVccTp = ReplaceableObject(
+    'ericsson_cm_3g."Aal5TpVccTp"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAal5TpVccTp_id",
+        "alarmReport",
+        "continuityCheck",
+        "fromUserMaxSduSize",
+        "nomPmBlkSize",
+        "processorId",
+        "toUserMaxSduSize",
+        "userLabel",
+        "vclTpId",
+        "counterMode",
+        "counterActivation"
+    FROM
+    ericsson_bulkcm."vsDataAal5TpVccTp"
+    
+    """
+    )
+
+AccessControlList = ReplaceableObject(
+    'ericsson_cm_3g."AccessControlList"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataIpSystem_id",
+        "vsDataAccessControlList_id",
+        "aclEntries_localIpAddress",
+        "aclEntries_remoteIpAddress",
+        "aclEntries_localPortFiltering",
+        "aclEntries_remotePortFiltering",
+        "aclEntries_protocol",
+        "aclEntries_aclAction",
+        "aclEntries_localIpAddressMask",
+        "aclEntries_localPort",
+        "aclEntries_remoteIpAddressMask",
+        "aclEntries_remotePort",
+        "aclEntries_icmpType",
+        "userLabel",
+        "bypassNdpAndMld"
+    FROM
+    ericsson_bulkcm."vsDataAccessControlList"
+    
+    """
+    )
+
+AddressIPv4 = ReplaceableObject(
+    'ericsson_cm_3g."AddressIPv4"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataIpSystem_id",
+        "vsDataIpRouter_id",
+        "vsDataInterfaceIpv4_id",
+        "vsDataAddressIpv4_id",
+        "vsDataVrrpv3Interface_id",
+        "address",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataAddressIPv4"
+    
+    """
+    )
+
+AdmissionControl = ReplaceableObject(
+    'ericsson_cm_3g."AdmissionControl"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataAdmissionControl_id",
+        "dlTransNwBandwidth",
+        "ulTransNwBandwidth",
+        "paArpOverride",
+        "arpBasedPreEmptionState",
+        "resourceReservationForPAState",
+        "zzzTemporary1",
+        "zzzTemporary2",
+        "zzzTemporary3",
+        "zzzTemporary4",
+        "zzzTemporary5",
+        "zzzTemporary6",
+        "zzzTemporary7",
+        "zzzTemp1",
+        "zzzTemp2",
+        "zzzTemp3",
+        "zzzTemp4",
+        "zzzTemp5",
+        "zzzTemp6",
+        "zzzTemp7",
+        "zzzTemp8",
+        "zzzTemp9",
+        "zzzTemp10",
+        "zzzTemp11",
+        "zzzTemp12",
+        "zzzTemp13",
+        "zzzTemp14",
+        "zzzTemp15",
+        "zzzTemp16",
+        "zzzTemp17",
+        "zzzTemp18",
+        "zzzTemp19",
+        "zzzTemp20",
+        "zzzTemp21",
+        "dlMbmsGbrRatio",
+        "resourceReservationForDifferentiation",
+        "dlAdmOverloadThr",
+        "admNrRbDifferentiationThr",
+        "nrOfRbReservationsPerPaConn",
+        "dlAdmDifferentiationThr",
+        "ulAdmDifferentiationThr",
+        "nrOfPaConnReservationsPerCell",
+        "ulAdmOverloadThr",
+        "admNrRrcDifferentiationThr",
+        "admResourceMinQciPrio",
+        "zzzTemporary22",
+        "zzzTemporary25",
+        "zzzTemporary26",
+        "zzzTemporary23",
+        "zzzTemporary24",
+        "lbAtoThresholdLevel2",
+        "lbAtoThresholdLevel1",
+        "maxVolteUe",
+        "maxReservedUe",
+        "maxActiveUe"
+    FROM
+    ericsson_bulkcm."vsDataAdmissionControl"
+    
+    """
+    )
+
+AdvCellSup = ReplaceableObject(
+    'ericsson_cm_3g."AdvCellSup"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataAdvCellSup_id",
+        "featureStateAdvCellSup",
+        "keyIdAdvCellSup",
+        "licenseStateAdvCellSup",
+        "serviceStateAdvCellSup"
+    FROM
+    ericsson_bulkcm."vsDataAdvCellSup"
+    
+    """
+    )
+
+AgpsPositioning = ReplaceableObject(
+    'ericsson_cm_3g."AgpsPositioning"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataUePositioning_id",
+        "vsDataAgpsPositioning_id",
+        "altitudeDirection",
+        "altitude",
+        "uncertaintyAltitude",
+        "confidence",
+        "polygonRadiusFactor",
+        "utranRnsPosition_latitudeSign",
+        "utranRnsPosition_latitude",
+        "utranRnsPosition_longitude",
+        "utranRnsUncertaintyRadius",
+        "utranRnsConfidence",
+        "elevationThreshold",
+        "posQualities_responseTimeTypical",
+        "posQualities_accuracyCodeTypical",
+        "posQualities_verticalAccuracyCodeTypical",
+        "posQualities_confidenceEstimate"
+    FROM
+    ericsson_bulkcm."vsDataAgpsPositioning"
+    
+    """
+    )
+
+AiDevice = ReplaceableObject(
+    'ericsson_cm_3g."AiDevice"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSectorAntenna_id",
+        "vsDataAuxPlugInUnit_id",
+        "vsDataRruDeviceGroup_id",
+        "vsDataAiDeviceSet_id",
+        "vsDataAiDevice_id",
+        "vsDataRbsSubrack_id",
+        "vsDataRbsSlot_id",
+        "vsDataDeviceGroup_id",
+        "administrativeState",
+        "reservedBy",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataAiDevice"
+    
+    """
+    )
+
+AiDeviceSet = ReplaceableObject(
+    'ericsson_cm_3g."AiDeviceSet"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSectorAntenna_id",
+        "vsDataAuxPlugInUnit_id",
+        "vsDataRruDeviceGroup_id",
+        "vsDataAiDeviceSet_id",
+        "vsDataRbsSubrack_id",
+        "vsDataRbsSlot_id",
+        "vsDataDeviceGroup_id",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataAiDeviceSet"
+    
+    """
+    )
+
+AirIfLoadGenerator = ReplaceableObject(
+    'ericsson_cm_3g."AirIfLoadGenerator"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataAirIfLoadGenerator_id",
+        "keyIdAilg",
+        "featureStateAilg",
+        "licenseStateAilg",
+        "serviceStateAilg"
+    FROM
+    ericsson_bulkcm."vsDataAirIfLoadGenerator"
+    
+    """
+    )
+
+AirIfLoadProfile = ReplaceableObject(
+    'ericsson_cm_3g."AirIfLoadProfile"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataAirIfLoadProfile_id",
+        "ailgHighPrio",
+        "ailgLowPrioModType",
+        "dlPrbLoadLevel",
+        "noOfOcngPrbSeries",
+        "ocngPrbSerie_pdschModType",
+        "ocngPrbSerie_prbFirst",
+        "ocngPrbSerie_prbLast",
+        "ocngPrbSerie_usedSubFrameNo",
+        "trafficModelPrb_bufferStatus",
+        "trafficModelPrb_noOfArtificialUsers",
+        "trafficModelPrb_qciDistSinrHigh",
+        "trafficModelPrb_qciDistSinrMedium",
+        "trafficModelPrb_qciDistSinrLow",
+        "trafficModelPrb_ulDlRatioPerQci",
+        "trafficModelPrb_bitRatePerQci",
+        "userLabel",
+        "zzzTemporary1",
+        "zzzTemporary2",
+        "zzzTemporary3",
+        "zzzTemporary4",
+        "zzzTemporary5",
+        "zzzTemporary6",
+        "zzzTemporary7",
+        "ailgChangePeriod",
+        "ailgLoadType",
+        "minLoadLevelPdcch",
+        "zzzTemporary9",
+        "zzzTemporary8"
+    FROM
+    ericsson_bulkcm."vsDataAirIfLoadProfile"
+    
+    """
+    )
+
+Aisgv2FwDownload = ReplaceableObject(
+    'ericsson_cm_3g."Aisgv2FwDownload"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataAisgv2FwDownload_id",
+        "keyIdAisgv2FwDownload",
+        "featureStateAisgv2FwDownload",
+        "licenseStateAisgv2FwDownload",
+        "serviceStateAisgv2FwDownload"
+    FROM
+    ericsson_bulkcm."vsDataAisgv2FwDownload"
+    
+    """
+    )
+
+AlarmPort = ReplaceableObject(
+    'ericsson_cm_3g."AlarmPort"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataFieldReplaceableUnit_id",
+        "vsDataAlarmPort_id",
+        "availabilityStatus",
+        "activeExternalAlarm",
+        "normallyOpen",
+        "alarmSlogan",
+        "administrativeState",
+        "perceivedSeverity",
+        "operationalState",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataAlarmPort"
+    
+    """
+    )
+
+AmoFunction = ReplaceableObject(
+    'ericsson_cm_3g."AmoFunction"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataAmoFunction_id",
+        "amoAllowedInterVendor"
+    FROM
+    ericsson_bulkcm."vsDataAmoFunction"
+    
+    """
+    )
+
+Anr = ReplaceableObject(
+    'ericsson_cm_3g."Anr"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataAnr_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "spare",
+        "anrCellAddRelationMax",
+        "anrPersistentStorageEnabled",
+        "featureStateAnr",
+        "keyIdAnr",
+        "licenseStateAnr",
+        "serviceStateAnr"
+    FROM
+    ericsson_bulkcm."vsDataAnr"
+    
+    """
+    )
+
+AnrFunction = ReplaceableObject(
+    'ericsson_cm_3g."AnrFunction"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataAnrFunction_id",
+        "removeNcellTime",
+        "removeNenbTime",
+        "removeNrelTime",
+        "zzzTemporary1",
+        "zzzTemporary2",
+        "zzzTemporary3",
+        "zzzTemporary4",
+        "zzzTemporary5",
+        "zzzTemporary6",
+        "zzzTemporary7",
+        "prioHoRate",
+        "prioHoSuccRate",
+        "prioTime",
+        "maxNoPciReportsEvent",
+        "maxTimeEventBasedPciConf",
+        "cellRelHoAttRateThreshold",
+        "zzzTemporary9",
+        "zzzTemporary8",
+        "zzzTemporary10",
+        "zzzTemporary11",
+        "zzzTemporary12",
+        "probCellDetectMedHoSuccTime",
+        "probCellDetectLowHoSuccTime",
+        "problematicCellPolicy",
+        "probCellDetectMedHoSuccThres",
+        "probCellDetectLowHoSuccThres",
+        "plmnWhiteListEnabled",
+        "perEcgiMeasPlmnWhiteList",
+        "maxNoPciReportsInact",
+        "nrHoNeededToAddCellRelation"
+    FROM
+    ericsson_bulkcm."vsDataAnrFunction"
+    
+    """
+    )
+
+AnrFunctionCdma20001xRtt = ReplaceableObject(
+    'ericsson_cm_3g."AnrFunctionCdma20001xRtt"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataAnrFunction_id",
+        "vsDataAnrFunctionCdma20001xRtt_id",
+        "excludeNid",
+        "anrCdma20001xRttStatus",
+        "cellAddThresholdDelta",
+        "extendedCellRangeEnabled",
+        "namingConvention"
+    FROM
+    ericsson_bulkcm."vsDataAnrFunctionCdma20001xRtt"
+    
+    """
+    )
+
+AnrFunctionEUtran = ReplaceableObject(
+    'ericsson_cm_3g."AnrFunctionEUtran"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataAnrFunction_id",
+        "vsDataAnrFunctionEUtran_id",
+        "anrInterFreqState",
+        "anrIntraFreqState",
+        "anrUesEUtraIntraFDecr",
+        "anrUesEUtraIntraFIncrHo",
+        "anrUesEUtraIntraFMax",
+        "anrUesEUtraIntraFMin",
+        "anrUesThreshInterFDecr",
+        "anrUesThreshInterFIncrAnr",
+        "anrUesThreshInterFIncrHo",
+        "anrUesThreshInterFMax",
+        "anrUesThreshInterFMin",
+        "cellAddRsrpThresholdEutran",
+        "cellAddRsrqThresholdEutran",
+        "hoAllowedEutranPolicy",
+        "x2SetupPolicy",
+        "anrUesEUtraIntraFIncrAnr",
+        "lbCellOffloadCapacityPolicy",
+        "anrEutranInterFMeasReportMin",
+        "anrEutranInterFMeasReportIncr",
+        "anrEutranInterFMeasReportMax",
+        "anrEutranInterFMeasReportDecr",
+        "anrIntraFreqStatus",
+        "anrInterFreqStatus"
+    FROM
+    ericsson_bulkcm."vsDataAnrFunctionEUtran"
+    
+    """
+    )
+
+AnrFunctionGeran = ReplaceableObject(
+    'ericsson_cm_3g."AnrFunctionGeran"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataAnrFunction_id",
+        "vsDataAnrFunctionGeran_id",
+        "anrStateGsm",
+        "anrGeranMeasReportDecr",
+        "anrGeranMeasReportIncr",
+        "anrGeranMeasReportMax",
+        "anrGeranMeasReportMin",
+        "rimIntegrationEnabled",
+        "anrGeranMeasReportRacIncr",
+        "anrGeranRacMeasOn"
+    FROM
+    ericsson_bulkcm."vsDataAnrFunctionGeran"
+    
+    """
+    )
+
+AnrFunctionUtran = ReplaceableObject(
+    'ericsson_cm_3g."AnrFunctionUtran"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataAnrFunction_id",
+        "vsDataAnrFunctionUtran_id",
+        "anrStateUtran",
+        "anrUtranMeasReportDecr",
+        "anrUtranMeasReportIncr",
+        "anrUtranMeasReportMax",
+        "anrUtranMeasReportMin",
+        "anrUtranAcMeasOn",
+        "anrUtranMeasReportAcIncr",
+        "hoAllowedUtranPolicy",
+        "rimIntegrationEnabled",
+        "cellAddEcNoThresholdUtranDelta",
+        "cellAddRscpThresholdUtranDelta",
+        "srvccPolicy"
+    FROM
+    ericsson_bulkcm."vsDataAnrFunctionUtran"
+    
+    """
+    )
+
+AnrIafUtran = ReplaceableObject(
+    'ericsson_cm_3g."AnrIafUtran"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataAnr_id",
+        "vsDataAnrIafUtran_id",
+        "anrEnabled",
+        "anrDsReportFilterEnabled",
+        "anrCandidateUpperThresh",
+        "anrCandidateExpirePeriod",
+        "anrCandidateLowerThresh",
+        "anrAddRelationEnabled",
+        "anrCandidateAbsPropThresh",
+        "anrDsReportFilterRscp",
+        "anrDsReportFilterEcno",
+        "anrAttRatioBadCrs"
+    FROM
+    ericsson_bulkcm."vsDataAnrIafUtran"
+    
+    """
+    )
+
+AntennaBranch = ReplaceableObject(
+    'ericsson_cm_3g."AntennaBranch"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSectorAntenna_id",
+        "vsDataAntennaBranch_id",
+        "branchName",
+        "mechanicalAntennaTilt",
+        "fqBandHighEdge",
+        "antennaSupervisionThreshold",
+        "fqBandLowEdge",
+        "lowCurrentSupervision"
+    FROM
+    ericsson_bulkcm."vsDataAntennaBranch"
+    
+    """
+    )
+
+AntennaNearUnit = ReplaceableObject(
+    'ericsson_cm_3g."AntennaNearUnit"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataAntennaUnitGroup_id",
+        "vsDataAntennaNearUnit_id",
+        "rfPortRef",
+        "serialNumber",
+        "uniqueId",
+        "productNumber",
+        "iuantDeviceType",
+        "onUnitUniqueId",
+        "administrativeState",
+        "anuType",
+        "softwareVersion",
+        "hardwareVersion"
+    FROM
+    ericsson_bulkcm."vsDataAntennaNearUnit"
+    
+    """
+    )
+
+AntennaSubunit = ReplaceableObject(
+    'ericsson_cm_3g."AntennaSubunit"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataAntennaUnitGroup_id",
+        "vsDataAntennaUnit_id",
+        "vsDataAntennaSubunit_id",
+        "maxTotalTilt",
+        "minTotalTilt",
+        "retSubunitRef",
+        "totalTilt",
+        "azimuthHalfPowerBeamwidth",
+        "commonChBeamfrmPortMap",
+        "customComChBeamfrmWtsPhase",
+        "customComChBeamfrmWtsAmplitude"
+    FROM
+    ericsson_bulkcm."vsDataAntennaSubunit"
+    
+    """
+    )
+
+AntennaUnit = ReplaceableObject(
+    'ericsson_cm_3g."AntennaUnit"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataAntennaUnitGroup_id",
+        "vsDataAntennaUnit_id",
+        "mechanicalAntennaTilt"
+    FROM
+    ericsson_bulkcm."vsDataAntennaUnit"
+    
+    """
+    )
+
+AntennaUnitGroup = ReplaceableObject(
+    'ericsson_cm_3g."AntennaUnitGroup"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataAntennaUnitGroup_id",
+        "positionInformation",
+        "positionRef"
+    FROM
+    ericsson_bulkcm."vsDataAntennaUnitGroup"
+    
+    """
+    )
+
+AntFeederCable = ReplaceableObject(
+    'ericsson_cm_3g."AntFeederCable"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataAntFeederCable_id",
+        "ulAttenuation",
+        "dlAttenuation",
+        "electricalUlDelay",
+        "electricalDlDelay",
+        "antennaBranchRef",
+        "connectedToObjectARef",
+        "objectAConnector"
+    FROM
+    ericsson_bulkcm."vsDataAntFeederCable"
+    
+    """
+    )
+
+Areas = ReplaceableObject(
+    'ericsson_cm_3g."Areas"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "vsDataAreas_id"
+    FROM
+    ericsson_bulkcm."vsDataAreas"
+    
+    """
+    )
+
+ArpMap = ReplaceableObject(
+    'ericsson_cm_3g."ArpMap"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataRabHandling_id",
+        "vsDataArpQosClassProfile_id",
+        "vsDataTrafficClass_id",
+        "vsDataArpMap_id",
+        "vsDataTrafficClassPsInt_id",
+        "userLabel",
+        "defaultArpQos_intPrio",
+        "defaultArpQos_pci",
+        "defaultArpQos_pvi",
+        "externalArpMapping",
+        "systemDefaultArpQos_intPrio",
+        "systemDefaultArpQos_pci",
+        "systemDefaultArpQos_pvi"
+    FROM
+    ericsson_bulkcm."vsDataArpMap"
+    
+    """
+    )
+
+ArpQosClassProfile = ReplaceableObject(
+    'ericsson_cm_3g."ArpQosClassProfile"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataRabHandling_id",
+        "vsDataArpQosClassProfile_id",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataArpQosClassProfile"
+    
+    """
+    )
+
+AtmConfService = ReplaceableObject(
+    'ericsson_cm_3g."AtmConfService"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAtmConfService_id",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataAtmConfService"
+    
+    """
+    )
+
+AtmPort = ReplaceableObject(
+    'ericsson_cm_3g."AtmPort"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAtmPort_id",
+        "userLabel",
+        "uses",
+        "hecCorrectionMode",
+        "loopbackDetection"
+    FROM
+    ericsson_bulkcm."vsDataAtmPort"
+    
+    """
+    )
+
+AtmTrafficDescriptor = ReplaceableObject(
+    'ericsson_cm_3g."AtmTrafficDescriptor"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransportNetwork_id",
+        "vsDataAtmTrafficDescriptor_id",
+        "egressAtmMcr",
+        "egressAtmPcr",
+        "egressAtmQos",
+        "ingressAtmMcr",
+        "ingressAtmPcr",
+        "ingressAtmQos",
+        "serviceCategory",
+        "userLabel",
+        "packetDiscard"
+    FROM
+    ericsson_bulkcm."vsDataAtmTrafficDescriptor"
+    
+    """
+    )
+
+AuPort = ReplaceableObject(
+    'ericsson_cm_3g."AuPort"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataAntennaUnitGroup_id",
+        "vsDataAntennaUnit_id",
+        "vsDataAntennaSubunit_id",
+        "vsDataAuPort_id",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataAuPort"
+    
+    """
+    )
+
+AuthenticationOrder = ReplaceableObject(
+    'ericsson_cm_3g."AuthenticationOrder"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSecM_id",
+        "vsDataUserManagement_id",
+        "vsDataAuthenticationOrder_id",
+        "authenticationMethodOrder_orderNumber",
+        "authenticationMethodOrder_methodReference",
+        "authenticationMethodOrder_userLabel",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataAuthenticationOrder"
+    
+    """
+    )
+
+AuthorizationOrder = ReplaceableObject(
+    'ericsson_cm_3g."AuthorizationOrder"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSecM_id",
+        "vsDataUserManagement_id",
+        "vsDataAuthorizationOrder_id",
+        "authorizationMethodOrder_orderNumber",
+        "authorizationMethodOrder_methodReference",
+        "authorizationMethodOrder_userLabel",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataAuthorizationOrder"
+    
+    """
+    )
+
+AutoCellCapEstFunction = ReplaceableObject(
+    'ericsson_cm_3g."AutoCellCapEstFunction"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataAutoCellCapEstFunction_id",
+        "useEstimatedCellCap"
+    FROM
+    ericsson_bulkcm."vsDataAutoCellCapEstFunction"
+    
+    """
+    )
+
+AutonomousMode = ReplaceableObject(
+    'ericsson_cm_3g."AutonomousMode"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLm_id",
+        "vsDataAutonomousMode_id",
+        "expiration",
+        "activationState"
+    FROM
+    ericsson_bulkcm."vsDataAutonomousMode"
+    
+    """
+    )
+
+AutoProvisioning = ReplaceableObject(
+    'ericsson_cm_3g."AutoProvisioning"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataNodeSupport_id",
+        "vsDataAutoProvisioning_id",
+        "rbsConfigLevel"
+    FROM
+    ericsson_bulkcm."vsDataAutoProvisioning"
+    
+    """
+    )
+
+AuxPlugInUnit = ReplaceableObject(
+    'ericsson_cm_3g."AuxPlugInUnit"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataAuxPlugInUnit_id",
+        "vsDataSectorAntenna_id",
+        "vsDataRbsSubrack_id",
+        "vsDataRbsSlot_id",
+        "administrativeState",
+        "piuType",
+        "position",
+        "positionInformation",
+        "positionRef",
+        "productData_productionDate",
+        "productData_productName",
+        "productData_productNumber",
+        "productData_productRevision",
+        "productData_serialNumber",
+        "unitType",
+        "positionCoordinates_geoDatum",
+        "positionCoordinates_altitude",
+        "positionCoordinates_latitude",
+        "positionCoordinates_longitude",
+        "supportUnitRef",
+        "uniqueHwId"
+    FROM
+    ericsson_bulkcm."vsDataAuxPlugInUnit"
+    
+    """
+    )
+
+BatteryBackup = ReplaceableObject(
+    'ericsson_cm_3g."BatteryBackup"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipmentSupportFunction_id",
+        "vsDataBatteryBackup_id",
+        "batteryTestIsRunning",
+        "batteryDisconnectTempCeaseOffset",
+        "boostChargeTime",
+        "boostChargeTriggerVoltage",
+        "chargeMaxCurrent",
+        "chargingMode",
+        "equalizeChargeCyclicInterval",
+        "equalizeChargeTime",
+        "intermittentChargeConnectTime",
+        "intermittentChargeConnectVoltage",
+        "intermittentChargeDisconnectTime",
+        "minimumBackupTime",
+        "minimumStateOfHealth",
+        "nominalTemp",
+        "sharedBattery",
+        "tempCompMaxVoltage",
+        "tempCompMinVoltage",
+        "tempCompVoltageSlope",
+        "testMode",
+        "testStartDay",
+        "testStartMonths",
+        "controlDomainRef",
+        "extendedSoftwareControl",
+        "floatChargeVoltage",
+        "batteryDisconnectHighTemp",
+        "elevatedChargeVoltage",
+        "batteryDisconnectTemp",
+        "batteryType",
+        "chargingVoltage",
+        "increasedChargeVoltage"
+    FROM
+    ericsson_bulkcm."vsDataBatteryBackup"
+    
+    """
+    )
+
+BbProcessingResource = ReplaceableObject(
+    'ericsson_cm_3g."BbProcessingResource"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataDeviceGroup_id",
+        "vsDataBbProcessingResource_id",
+        "vsDataFieldReplaceableUnit_id",
+        "licCapDistr"
+    FROM
+    ericsson_bulkcm."vsDataBbProcessingResource"
+    
+    """
+    )
+
+BestNeighborSI = ReplaceableObject(
+    'ericsson_cm_3g."BestNeighborSI"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataBestNeighborSI_id",
+        "featureStateBestNeighborSI",
+        "keyIdBestNeighborSI",
+        "licenseStateBestNeighborSI",
+        "serviceStateBestNeighborSI"
+    FROM
+    ericsson_bulkcm."vsDataBestNeighborSI"
+    
+    """
+    )
+
+BfdProfile = ReplaceableObject(
+    'ericsson_cm_3g."BfdProfile"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataIpSystem_id",
+        "vsDataIpRouter_id",
+        "vsDataBfdProfile_id",
+        "detectionMultiplier",
+        "desiredMinTxInterval",
+        "requiredMinRxInterval",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataBfdProfile"
+    
+    """
+    )
+
+BoundaryOrdinaryClock = ReplaceableObject(
+    'ericsson_cm_3g."BoundaryOrdinaryClock"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransport_id",
+        "vsDataPtp_id",
+        "vsDataBoundaryOrdinaryClock_id",
+        "clockType",
+        "domainNumber",
+        "priority2",
+        "priority1",
+        "ptpProfile",
+        "clockStatus",
+        "reservedBy"
+    FROM
+    ericsson_bulkcm."vsDataBoundaryOrdinaryClock"
+    
+    """
+    )
+
+Bridge = ReplaceableObject(
+    'ericsson_cm_3g."Bridge"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSTN_id",
+        "vsDataBridge_id",
+        "vsDataTransport_id",
+        "operationalState",
+        "mac_address",
+        "port",
+        "availabilityStatus",
+        "macAddress",
+        "reservedBy"
+    FROM
+    ericsson_bulkcm."vsDataBridge"
+    
+    """
+    )
+
+BrM = ReplaceableObject(
+    'ericsson_cm_3g."BrM"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "exportPackageLabelPrefix"
+    FROM
+    ericsson_bulkcm."vsDataBrM"
+    
+    """
+    )
+
+BrmBackup = ReplaceableObject(
+    'ericsson_cm_3g."BrmBackup"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmBackupManager_id",
+        "vsDataBrmBackup_id",
+        "actionInProgress",
+        "backupName",
+        "creationTime",
+        "progressReport",
+        "status",
+        "createdBy",
+        "creatorJobId",
+        "creationType",
+        "swVersion_productName",
+        "swVersion_productNumber",
+        "swVersion_productRevision",
+        "swVersion_productionDate",
+        "swVersion_description",
+        "swVersion_xossx_type",
+        "progressReport_actionName",
+        "progressReport_progressInfo",
+        "progressReport_progressPercentage",
+        "progressReport_xossx_result",
+        "progressReport_resultInfo",
+        "progressReport_state",
+        "progressReport_actionId",
+        "progressReport_timeActionStarted",
+        "progressReport_timeActionCompleted",
+        "progressReport_timeOfLastStatusUpdate"
+    FROM
+    ericsson_bulkcm."vsDataBrmBackup"
+    
+    """
+    )
+
+BrmBackupHousekeeping = ReplaceableObject(
+    'ericsson_cm_3g."BrmBackupHousekeeping"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmBackupManager_id",
+        "vsDataBrmBackupHousekeeping_id",
+        "autoDelete",
+        "maxStoredManualBackups"
+    FROM
+    ericsson_bulkcm."vsDataBrmBackupHousekeeping"
+    
+    """
+    )
+
+BrmBackupLabelStore = ReplaceableObject(
+    'ericsson_cm_3g."BrmBackupLabelStore"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmBackupManager_id",
+        "vsDataBrmBackupLabelStore_id",
+        "lastImportedBackup",
+        "lastCreatedBackup",
+        "lastExportedBackup",
+        "restoreEscalationList",
+        "lastRestoredBackup"
+    FROM
+    ericsson_bulkcm."vsDataBrmBackupLabelStore"
+    
+    """
+    )
+
+BrmBackupManager = ReplaceableObject(
+    'ericsson_cm_3g."BrmBackupManager"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmBackupManager_id",
+        "actionInProgress",
+        "backupDomain",
+        "backupType",
+        "progressReport_actionName",
+        "progressReport_progressInfo",
+        "progressReport_progressPercentage",
+        "progressReport_xossx_result",
+        "progressReport_resultInfo",
+        "progressReport_state",
+        "progressReport_actionId",
+        "progressReport_timeActionStarted",
+        "progressReport_timeActionCompleted",
+        "progressReport_timeOfLastStatusUpdate",
+        "progressReport"
+    FROM
+    ericsson_bulkcm."vsDataBrmBackupManager"
+    
+    """
+    )
+
+BrmBackupScheduler = ReplaceableObject(
+    'ericsson_cm_3g."BrmBackupScheduler"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmBackupManager_id",
+        "vsDataBrmBackupScheduler_id",
+        "nextScheduledTime",
+        "scheduledBackupName",
+        "maxStoredScheduledBackups",
+        "mostRecentlyCreatedAutoBackup",
+        "progressReport_actionName",
+        "progressReport_progressInfo",
+        "progressReport_progressPercentage",
+        "progressReport_xossx_result",
+        "progressReport_resultInfo",
+        "progressReport_state",
+        "progressReport_actionId",
+        "progressReport_timeActionStarted",
+        "progressReport_timeActionCompleted",
+        "progressReport_timeOfLastStatusUpdate",
+        "adminState",
+        "autoExportUri",
+        "autoExport",
+        "autoExportPassword",
+        "progressReport"
+    FROM
+    ericsson_bulkcm."vsDataBrmBackupScheduler"
+    
+    """
+    )
+
+BrmCalendarBasedPeriodicEvent = ReplaceableObject(
+    'ericsson_cm_3g."BrmCalendarBasedPeriodicEvent"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmBackupManager_id",
+        "vsDataBrmBackupScheduler_id",
+        "vsDataBrmCalendarBasedPeriodicEvent_id",
+        "startTime",
+        "time",
+        "dayOfWeekOccurrence",
+        "dayOfMonth",
+        "month",
+        "dayOfWeek",
+        "stopTime"
+    FROM
+    ericsson_bulkcm."vsDataBrmCalendarBasedPeriodicEvent"
+    
+    """
+    )
+
+BrmFailsafeBackup = ReplaceableObject(
+    'ericsson_cm_3g."BrmFailsafeBackup"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmBackupManager_id",
+        "vsDataBrmFailsafeBackup_id",
+        "usageState",
+        "backupName",
+        "progressReport",
+        "timeoutLength",
+        "progressReport_actionName",
+        "progressReport_progressInfo",
+        "progressReport_progressPercentage",
+        "progressReport_xossx_result",
+        "progressReport_resultInfo",
+        "progressReport_state",
+        "progressReport_actionId",
+        "progressReport_timeActionStarted",
+        "progressReport_timeActionCompleted",
+        "progressReport_timeOfLastStatusUpdate"
+    FROM
+    ericsson_bulkcm."vsDataBrmFailsafeBackup"
+    
+    """
+    )
+
+BrmPeriodicEvent = ReplaceableObject(
+    'ericsson_cm_3g."BrmPeriodicEvent"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmBackupManager_id",
+        "vsDataBrmBackupScheduler_id",
+        "vsDataBrmPeriodicEvent_id",
+        "startTime",
+        "minutes",
+        "days",
+        "hours",
+        "weeks",
+        "stopTime"
+    FROM
+    ericsson_bulkcm."vsDataBrmPeriodicEvent"
+    
+    """
+    )
+
+BrmRollbackAtRestore = ReplaceableObject(
+    'ericsson_cm_3g."BrmRollbackAtRestore"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmRollbackAtRestore_id",
+        "timeRemainingBeforeRollback",
+        "timeAllowedBeforeRollback"
+    FROM
+    ericsson_bulkcm."vsDataBrmRollbackAtRestore"
+    
+    """
+    )
+
+BrmSingleEvent = ReplaceableObject(
+    'ericsson_cm_3g."BrmSingleEvent"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataBrM_id",
+        "vsDataBrmBackupManager_id",
+        "vsDataBrmBackupScheduler_id",
+        "vsDataBrmSingleEvent_id",
+        "scheduledTime"
+    FROM
+    ericsson_bulkcm."vsDataBrmSingleEvent"
+    
+    """
+    )
+
+Cabinet = ReplaceableObject(
+    'ericsson_cm_3g."Cabinet"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataCabinet_id",
+        "cabinetIdentifier",
+        "productData_productionDate",
+        "productData_productName",
+        "productData_productNumber",
+        "productData_productRevision",
+        "productData_serialNumber",
+        "climateSystem",
+        "sharedCabinetIdentifier",
+        "userLabel",
+        "climateRegulationSystem",
+        "productData"
+    FROM
+    ericsson_bulkcm."vsDataCabinet"
+    
+    """
+    )
+
+CapacityChannelBandwidth = ReplaceableObject(
+    'ericsson_cm_3g."CapacityChannelBandwidth"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataCapacityLicenses_id",
+        "vsDataCapacityChannelBandwidth_id",
+        "licenseCapacityChannelBandwidth",
+        "capacityUnitChannelBandwidth",
+        "keyIdChannelBandwidth",
+        "licenseStateChannelBandwidth"
+    FROM
+    ericsson_bulkcm."vsDataCapacityChannelBandwidth"
+    
+    """
+    )
+
+CapacityConnectedUsers = ReplaceableObject(
+    'ericsson_cm_3g."CapacityConnectedUsers"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataCapacityLicenses_id",
+        "vsDataCapacityConnectedUsers_id",
+        "licenseCapacityConnectedUsers",
+        "licenseStateConnectedUsers",
+        "capacityUnitConnectedUsers",
+        "keyIdConnectedUsers",
+        "licConnectedUsersPercentileConf",
+        "gracePeriodActive",
+        "gracePeriodAvailable",
+        "gracePeriodOriginalLicenseLimit",
+        "gracePeriodTimeLeft"
+    FROM
+    ericsson_bulkcm."vsDataCapacityConnectedUsers"
+    
+    """
+    )
+
+CapacityFeatureLicense = ReplaceableObject(
+    'ericsson_cm_3g."CapacityFeatureLicense"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataCapacityFeatureLicense_id",
+        "capacityType",
+        "capacityUnit",
+        "gracePeriod_startDate",
+        "gracePeriod_originalLicenseLimit",
+        "gracePeriod_isGracePeriodControlled",
+        "gracePeriod_gracePeriodState",
+        "gracePeriod_stopDate",
+        "keyId",
+        "licenseState",
+        "currentCapacityLimit_noLimit",
+        "currentCapacityLimit_value",
+        "licensedCapacity_noLimit",
+        "licensedCapacity_value"
+    FROM
+    ericsson_bulkcm."vsDataCapacityFeatureLicense"
+    
+    """
+    )
+
+CapacityKey = ReplaceableObject(
+    'ericsson_cm_3g."CapacityKey"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLm_id",
+        "vsDataCapacityKey_id",
+        "shared",
+        "licensedCapacityLimitReached",
+        "grantedCapacityLevel",
+        "expiration",
+        "xossx_name",
+        "validFrom",
+        "licensedCapacityLimit_value",
+        "licensedCapacityLimit_noLimit",
+        "state",
+        "keyId",
+        "productType"
+    FROM
+    ericsson_bulkcm."vsDataCapacityKey"
+    
+    """
+    )
+
+CapacityLicenses = ReplaceableObject(
+    'ericsson_cm_3g."CapacityLicenses"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataCapacityLicenses_id"
+    FROM
+    ericsson_bulkcm."vsDataCapacityLicenses"
+    
+    """
+    )
+
+CapacityState = ReplaceableObject(
+    'ericsson_cm_3g."CapacityState"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLm_id",
+        "vsDataCapacityState_id",
+        "licensedCapacityLimitReached",
+        "grantedCapacityLevel",
+        "capacityKey",
+        "currentCapacityLimit_value",
+        "currentCapacityLimit_noLimit",
+        "description",
+        "licenseState",
+        "keyId",
+        "serviceState",
+        "featureState"
+    FROM
+    ericsson_bulkcm."vsDataCapacityState"
+    
+    """
+    )
+
+Carrier = ReplaceableObject(
+    'ericsson_cm_3g."Carrier"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "NodeBFunction_id",
+        "vsDataSector_id",
+        "vsDataCarrier_id",
+        "cqiErrors",
+        "cqiErrorsAbsent",
+        "cqiAdjustmentOn",
+        "hsPowerMargin",
+        "cellRange",
+        "hsScchMinCodePower",
+        "hsScchMaxCodePower",
+        "queueSelectAlgorithm",
+        "airRateTypeSelector",
+        "qualityCheckPower",
+        "frequencyPlane",
+        "trDeviceRef",
+        "dbccDeviceRef",
+        "aiDeviceRef",
+        "tpaDeviceRef",
+        "schCongPeriodGbr",
+        "schPrioForAbsResSharing",
+        "schNoCongThreshGbr",
+        "schCongThreshGbr",
+        "schPowerDeltaCongGbr",
+        "schNoCongPeriodGbr",
+        "schCongThreshNonGbr",
+        "schMinPowerNonGbrHsUsers",
+        "schWeight",
+        "schMaxDelay",
+        "dpclDevicesRef",
+        "numberOfTxBranches",
+        "numberOfRxBranches",
+        "ulBandwidth",
+        "dlBandwidth",
+        "ulFilterProfile",
+        "dlFilterProfile",
+        "hsdpaMcActivityBufferThreshold",
+        "hsdpaMcInactivityTimer",
+        "extraHsScchPowerForSrbOnHsdpa",
+        "extraPowerForSrbOnHsdpa",
+        "minBitRate",
+        "minBitRateMinCqi",
+        "defaultCqiHsFach",
+        "extraCompForSigHsFach",
+        "extraCompHsFach",
+        "extraHsScchCompForSigHsFach",
+        "extraHsScchCompHsFach",
+        "throughputPqxHsFach",
+        "extraCompEnhUeDrx",
+        "extraHsScchCompEnhUeDrx",
+        "chQualOffset",
+        "maxDlPowerCapability",
+        "minDlPowerCapability",
+        "dlPowerOffsetCombinedCell",
+        "eulLockedOptimalNoiseFloorEstimate",
+        "eulMaxOwnUuLoad",
+        "eulMaxRotCoverage",
+        "eulOptimalNoiseFloorLock_eulNoiseFloorLock",
+        "eulOptimalNoiseFloorLock_eulOptimalNoiseFloorEstimate",
+        "eulSlidingWindowTime",
+        "eulThermalLevelPrior",
+        "fccRotMarginHigh",
+        "fccRotMarginLow",
+        "badBerFramesDtxHsOlpc",
+        "badBerFramesHsOlpc",
+        "numOfDtxHsOlpc",
+        "periodDtxHsOlpc",
+        "sirTargetStepHsOlpc",
+        "downlinkBaseBandPoolRef",
+        "txBranchesConfigured",
+        "nbirFixedNotchPosition",
+        "nbirAlgorithm"
+    FROM
+    ericsson_bulkcm."vsDataCarrier"
+    
+    """
+    )
+
+CarrierAggregationFunction = ReplaceableObject(
+    'ericsson_cm_3g."CarrierAggregationFunction"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataCarrierAggregationFunction_id",
+        "sCellActDeactDataThresHyst",
+        "caUsageLimit",
+        "caPreemptionThreshold",
+        "sCellActDeactDataThres",
+        "sCellScheduleSinrThres",
+        "waitForCaOpportunity",
+        "waitForBetterSCellRep",
+        "waitForAdditionalSCellOpportunity",
+        "caRateAdjustCoeff",
+        "sCellActDeactUlDataThreshHyst",
+        "sCellActDeactUlDataThresh",
+        "sCellSelectionMode",
+        "pdcchEnhancedLaForVolte",
+        "sCellDeactOutOfCoverageTimer",
+        "sCellDeactDelayTimer",
+        "sCellActProhibitTimer",
+        "sCellDeactProhibitTimer",
+        "sCellActDeactProhibitTimer"
+    FROM
+    ericsson_bulkcm."vsDataCarrierAggregationFunction"
+    
+    """
+    )
+
+CaxFanUnit = ReplaceableObject(
+    'ericsson_cm_3g."CaxFanUnit"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataCaxFanUnit_id",
+        "administrativeState",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataCaxFanUnit"
+    
+    """
+    )
+
+Cbu = ReplaceableObject(
+    'ericsson_cm_3g."Cbu"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataCbu_id",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataCbu"
+    
+    """
+    )
+
+CchFrameSynch = ReplaceableObject(
+    'ericsson_cm_3g."CchFrameSynch"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataCchFrameSynch_id",
+        "dto",
+        "doStep",
+        "toAWS",
+        "toAWE",
+        "toAE",
+        "reservedBy",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataCchFrameSynch"
+    
+    """
+    )
+
+Cdma2000SessionContinuity = ReplaceableObject(
+    'ericsson_cm_3g."Cdma2000SessionContinuity"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataCdma2000SessionContinuity_id",
+        "keyIdCdma2000SessionContinuity",
+        "featureStateCdma2000SessionContinuity",
+        "licenseStateCdma2000SessionContinuity",
+        "serviceStateCdma2000SessionContinuity"
+    FROM
+    ericsson_bulkcm."vsDataCdma2000SessionContinuity"
+    
+    """
+    )
+
+CellResources = ReplaceableObject(
+    'ericsson_cm_3g."CellResources"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "NodeBFunction_id",
+        "vsDataNodeBLocalCellGroup_id",
+        "vsDataNodeBLocalCell_id",
+        "vsDataCellResources_id",
+        "numOfPcpich",
+        "numOfPccpch",
+        "availabilityStatus",
+        "numOfPsch",
+        "numOfScpich",
+        "operationalState",
+        "numOfSsch",
+        "numOfBch"
+    FROM
+    ericsson_bulkcm."vsDataCellResources"
+    
+    """
+    )
+
+CellSleepFunction = ReplaceableObject(
+    'ericsson_cm_3g."CellSleepFunction"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataEUtranCellFDD_id",
+        "vsDataCellSleepFunction_id",
+        "covCellDlPrbWakeUpThreshold",
+        "capCellDlPrbSleepThreshold",
+        "sleepEndTime",
+        "covCellRrcConnWakeUpThreshold",
+        "sleepStartTime",
+        "covCellWakeUpMonitorDurTimer",
+        "capCellRrcConnSleepThreshold",
+        "coverageCellDiscovery",
+        "sleepState",
+        "capCellSleepMonitorDurTimer",
+        "sleepMode"
+    FROM
+    ericsson_bulkcm."vsDataCellSleepFunction"
+    
+    """
+    )
+
+CellSleepNodeFunction = ReplaceableObject(
+    'ericsson_cm_3g."CellSleepNodeFunction"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataCellSleepNodeFunction_id",
+        "csmEutranInterFMeasReportMax",
+        "csmEutranInterFMeasReportDecr",
+        "csmEutranInterFMeasReportIncr",
+        "csmEutranInterFMeasReportMin"
+    FROM
+    ericsson_bulkcm."vsDataCellSleepNodeFunction"
+    
+    """
+    )
+
+CertM = ReplaceableObject(
+    'ericsson_cm_3g."CertM"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSecM_id",
+        "vsDataCertM_id",
+        "userLabel",
+        "reportProgress_actionName",
+        "reportProgress_progressInfo",
+        "reportProgress_progressPercentage",
+        "reportProgress_xossx_result",
+        "reportProgress_resultInfo",
+        "reportProgress_state",
+        "reportProgress_actionId",
+        "reportProgress_timeActionStarted",
+        "reportProgress_timeActionCompleted",
+        "reportProgress_timeOfLastStatusUpdate",
+        "localFileStorePath"
+    FROM
+    ericsson_bulkcm."vsDataCertM"
+    
+    """
+    )
+
+CertMCapabilities = ReplaceableObject(
+    'ericsson_cm_3g."CertMCapabilities"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSecM_id",
+        "vsDataCertM_id",
+        "vsDataCertMCapabilities_id"
+    FROM
+    ericsson_bulkcm."vsDataCertMCapabilities"
+    
+    """
+    )
+
+ChannelSwitching = ReplaceableObject(
+    'ericsson_cm_3g."ChannelSwitching"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataChannelSwitching_id",
+        "dlRlcBufUpswitch",
+        "ulRlcBufUpswitch",
+        "downswitchThreshold",
+        "downswitchTimerThreshold",
+        "downswitchTimer",
+        "dlRlcBufUpswitchMrab",
+        "ulRlcBufUpswitchMrab",
+        "upswitchTimer",
+        "coverageTimer",
+        "inactivityTimer",
+        "downswitchPwrMargin",
+        "upswitchPwrMargin",
+        "downswitchTimerUp",
+        "downswitchTimerSp",
+        "hsdschInactivityTimer",
+        "bandwidthMarginUl",
+        "upswitchTimerUl",
+        "bandwidthMargin",
+        "dlDownswitchBandwidthMargin",
+        "dlThroughputAllowUpswitchThreshold",
+        "dlThroughputDownswitchTimer",
+        "inactivityTimerPch",
+        "ulThroughputAllowUpswitchThreshold",
+        "ulThroughputDownswitchTimer",
+        "ulDownswitchBandwidthMargin",
+        "inactivityTimeMultiPsInteractive",
+        "fachToHsDisabled",
+        "hsdschInactivityTimerCpc",
+        "dlRlcBufUpswitchHsFach",
+        "inactivityTimerEnhUeDrx",
+        "ulRlcBufUpswitchEulFach",
+        "uraToDchEnabledDl"
+    FROM
+    ericsson_bulkcm."vsDataChannelSwitching"
+    
+    """
+    )
+
+Climate = ReplaceableObject(
+    'ericsson_cm_3g."Climate"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipmentSupportFunction_id",
+        "vsDataClimate_id",
+        "controlDomainRef",
+        "climateControlMode",
+        "availabilityStatus",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataClimate"
+    
+    """
+    )
+
+CliSsh = ReplaceableObject(
+    'ericsson_cm_3g."CliSsh"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSysM_id",
+        "vsDataCliSsh_id",
+        "administrativeState",
+        "port"
+    FROM
+    ericsson_bulkcm."vsDataCliSsh"
+    
+    """
+    )
+
+CliTls = ReplaceableObject(
+    'ericsson_cm_3g."CliTls"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSysM_id",
+        "vsDataCliTls_id",
+        "administrativeState",
+        "trustCategory",
+        "nodeCredential",
+        "port"
+    FROM
+    ericsson_bulkcm."vsDataCliTls"
+    
+    """
+    )
+
+CnOperator = ReplaceableObject(
+    'ericsson_cm_3g."CnOperator"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataCnOperator_id",
+        "userLabel",
+        "plmnIdentity_mcc",
+        "plmnIdentity_mnc",
+        "plmnIdentity_mncLength",
+        "iphoNetworkRefsUtran",
+        "iphoNetworkRefsGsm",
+        "equivalentPlmnIdentityGroupRef",
+        "cnOperatorIndex",
+        "iphoNetworkRefsEutran",
+        "dchResourceShare",
+        "u1LinkRef",
+        "primarySharedCnOperatorRef"
+    FROM
+    ericsson_bulkcm."vsDataCnOperator"
+    
+    """
+    )
+
+CombinedCell = ReplaceableObject(
+    'ericsson_cm_3g."CombinedCell"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataCombinedCell_id",
+        "featureStateCombinedCell",
+        "keyIdCombinedCell",
+        "licenseStateCombinedCell",
+        "serviceStateCombinedCell"
+    FROM
+    ericsson_bulkcm."vsDataCombinedCell"
+    
+    """
+    )
+
+CommonChannelResourcesDl = ReplaceableObject(
+    'ericsson_cm_3g."CommonChannelResourcesDl"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "NodeBFunction_id",
+        "vsDataNodeBLocalCellGroup_id",
+        "vsDataNodeBLocalCell_id",
+        "vsDataCommonChannelResourcesDl_id",
+        "availabilityStatus",
+        "numOfSccpch",
+        "operationalState",
+        "numOfPich",
+        "numOfPch",
+        "numOfAich",
+        "numOfFach"
+    FROM
+    ericsson_bulkcm."vsDataCommonChannelResourcesDl"
+    
+    """
+    )
+
+CommonChannelResourcesUl = ReplaceableObject(
+    'ericsson_cm_3g."CommonChannelResourcesUl"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "NodeBFunction_id",
+        "vsDataNodeBLocalCellGroup_id",
+        "vsDataNodeBLocalCell_id",
+        "vsDataNodeBSectorCarrier_id",
+        "vsDataCommonChannelResourcesUl_id",
+        "numOfPrach",
+        "availabilityStatus",
+        "numOfRach",
+        "operationalState"
+    FROM
+    ericsson_bulkcm."vsDataCommonChannelResourcesUl"
+    
+    """
+    )
+
+CommunicationContexts = ReplaceableObject(
+    'ericsson_cm_3g."CommunicationContexts"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "NodeBFunction_id",
+        "vsDataCommunicationContexts_id",
+        "noOfCommunicationContexts"
+    FROM
+    ericsson_bulkcm."vsDataCommunicationContexts"
+    
+    """
+    )
+
+ConfigurationVersion = ReplaceableObject(
+    'ericsson_cm_3g."ConfigurationVersion"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSwManagement_id",
+        "vsDataConfigurationVersion_id",
+        "currentUpgradePackage",
+        "configAdmCountdown",
+        "autoCreatedCVIsTurnedOn",
+        "rollbackInitCounterValue",
+        "rollbackInitTimerValue",
+        "rollbackOn",
+        "timeForAutoCreatedCV"
+    FROM
+    ericsson_bulkcm."vsDataConfigurationVersion"
+    
+    """
+    )
+
+CoverageRelation = ReplaceableObject(
+    'ericsson_cm_3g."CoverageRelation"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "UtranCell_id",
+        "vsDataCoverageRelation_id",
+        "utranCellRef",
+        "coverageIndicator",
+        "hsPathlossThreshold",
+        "relationCapability_hsCellSelection",
+        "relationCapability_hsLoadSharing",
+        "relationCapability_dchLoadSharing",
+        "relationCapability_powerSave",
+        "hsIflsDownswitch"
+    FROM
+    ericsson_bulkcm."vsDataCoverageRelation"
+    
+    """
+    )
+
+CpriLinkSupervision = ReplaceableObject(
+    'ericsson_cm_3g."CpriLinkSupervision"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataNodeSupport_id",
+        "vsDataCpriLinkSupervision_id",
+        "cpriLinkFilterTime"
+    FROM
+    ericsson_bulkcm."vsDataCpriLinkSupervision"
+    
+    """
+    )
+
+CsfbForLimitedDualRadioUE = ReplaceableObject(
+    'ericsson_cm_3g."CsfbForLimitedDualRadioUE"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataCsfbForLimitedDualRadioUE_id",
+        "keyIdCsfbForLimitedDualRadioUE",
+        "featureStateCsfbForLimitedDualRadioUE",
+        "licenseStateCsfbForLimitedDualRadioUE",
+        "serviceStateCsfbForLimitedDualRadioUE"
+    FROM
+    ericsson_bulkcm."vsDataCsfbForLimitedDualRadioUE"
+    
+    """
+    )
+
+CsfbToGeranUtran = ReplaceableObject(
+    'ericsson_cm_3g."CsfbToGeranUtran"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataCsfbToGeranUtran_id",
+        "featureStateCsfbToGeranUtran",
+        "keyIdCsfbToGeranUtran",
+        "licenseStateCsfbToGeranUtran",
+        "serviceStateCsfbToGeranUtran"
+    FROM
+    ericsson_bulkcm."vsDataCsfbToGeranUtran"
+    
+    """
+    )
+
+DataCollectionGeneration = ReplaceableObject(
+    'ericsson_cm_3g."DataCollectionGeneration"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataDataCollectionGeneration_id",
+        "dcgState",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataDataCollectionGeneration"
+    
+    """
+    )
+
+DataRadioBearer = ReplaceableObject(
+    'ericsson_cm_3g."DataRadioBearer"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataRadioBearerTable_id",
+        "vsDataDataRadioBearer_id",
+        "tPollRetransmitDl",
+        "dlMaxRetxThreshold",
+        "ulMaxRetxThreshold",
+        "tPollRetransmitUl"
+    FROM
+    ericsson_bulkcm."vsDataDataRadioBearer"
+    
+    """
+    )
+
+DateAndTime = ReplaceableObject(
+    'ericsson_cm_3g."DateAndTime"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSysM_id",
+        "vsDataTimeM_id",
+        "vsDataDateAndTime_id",
+        "tzRevision",
+        "dateTimeOffset",
+        "timeZone",
+        "localDateTime"
+    FROM
+    ericsson_bulkcm."vsDataDateAndTime"
+    
+    """
+    )
+
+DBSAndSabe = ReplaceableObject(
+    'ericsson_cm_3g."DBSAndSabe"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataDBSAndSabe_id",
+        "featureStateDBSAndSabe",
+        "keyIdDBSAndSabe",
+        "licenseStateDBSAndSabe",
+        "serviceStateDBSAndSabe"
+    FROM
+    ericsson_bulkcm."vsDataDBSAndSabe"
+    
+    """
+    )
+
+DchFrameSynch = ReplaceableObject(
+    'ericsson_cm_3g."DchFrameSynch"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataDchFrameSynch_id",
+        "dto",
+        "doStep",
+        "toAWS",
+        "toAWE",
+        "toAE",
+        "uto",
+        "uoStep",
+        "toAWEUl",
+        "toAEUl",
+        "userLabel",
+        "toAWSUl"
+    FROM
+    ericsson_bulkcm."vsDataDchFrameSynch"
+    
+    """
+    )
+
+DeviceGroup = ReplaceableObject(
+    'ericsson_cm_3g."DeviceGroup"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataAuxPlugInUnit_id",
+        "vsDataDeviceGroup_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataPiuDevice_id",
+        "vsDataRbsSubrack_id",
+        "vsDataRbsSlot_id"
+    FROM
+    ericsson_bulkcm."vsDataDeviceGroup"
+    
+    """
+    )
+
+Dhcp = ReplaceableObject(
+    'ericsson_cm_3g."Dhcp"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataIpOam_id",
+        "vsDataDhcp_id",
+        "userLabel",
+        "dhcpServerAddresses"
+    FROM
+    ericsson_bulkcm."vsDataDhcp"
+    
+    """
+    )
+
+DifferentiatedAdmissionControl = ReplaceableObject(
+    'ericsson_cm_3g."DifferentiatedAdmissionControl"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataDifferentiatedAdmissionControl_id",
+        "featureStateDifferentiatedAdmissionControl",
+        "keyIdDifferentiatedAdmissionControl",
+        "licenseStateDifferentiatedAdmissionControl",
+        "serviceStateDifferentiatedAdmissionControl"
+    FROM
+    ericsson_bulkcm."vsDataDifferentiatedAdmissionControl"
+    
+    """
+    )
+
+DlBasebandCapacity = ReplaceableObject(
+    'ericsson_cm_3g."DlBasebandCapacity"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataCapacityLicenses_id",
+        "vsDataDlBasebandCapacity_id",
+        "licenseCapacityDlBbCapacity",
+        "capacityUnitDlBbCapacity",
+        "keyIdDlBbCapacity",
+        "licDlBbPercentileConf",
+        "licenseStateDlBbCapacity"
+    FROM
+    ericsson_bulkcm."vsDataDlBasebandCapacity"
+    
+    """
+    )
+
+DlFss = ReplaceableObject(
+    'ericsson_cm_3g."DlFss"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataDlFss_id",
+        "featureStateDlFss",
+        "keyIdDlFss",
+        "licenseStateDlFss",
+        "serviceStateDlFss"
+    FROM
+    ericsson_bulkcm."vsDataDlFss"
+    
+    """
+    )
+
+DlPrbCapacity = ReplaceableObject(
+    'ericsson_cm_3g."DlPrbCapacity"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataCapacityLicenses_id",
+        "vsDataDlPrbCapacity_id",
+        "capacityUnitDlPrbCapacity",
+        "keyIdDlPrbCapacity",
+        "licDlPrbPercentileConf",
+        "licenseCapacityDlPrbCapacity",
+        "licenseStateDlPrbCapacity"
+    FROM
+    ericsson_bulkcm."vsDataDlPrbCapacity"
+    
+    """
+    )
+
+DnsClient = ReplaceableObject(
+    'ericsson_cm_3g."DnsClient"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransport_id",
+        "vsDataRouter_id",
+        "vsDataDnsClient_id",
+        "vsDataHost_id",
+        "serverAddress",
+        "dscp",
+        "localIpAddress",
+        "reservedBy",
+        "userLabel",
+        "usedServerAddress",
+        "configurationMode"
+    FROM
+    ericsson_bulkcm."vsDataDnsClient"
+    
+    """
+    )
+
+DownlinkBaseBandPool = ReplaceableObject(
+    'ericsson_cm_3g."DownlinkBaseBandPool"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataDownlinkBaseBandPool_id",
+        "maxNumADchReservation",
+        "numHsCodeResources"
+    FROM
+    ericsson_bulkcm."vsDataDownlinkBaseBandPool"
+    
+    """
+    )
+
+Drx = ReplaceableObject(
+    'ericsson_cm_3g."Drx"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataDrx_id",
+        "keyIdDrx",
+        "featureStateDrx",
+        "licenseStateDrx",
+        "serviceStateDrx"
+    FROM
+    ericsson_bulkcm."vsDataDrx"
+    
+    """
+    )
+
+DrxProfile = ReplaceableObject(
+    'ericsson_cm_3g."DrxProfile"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataDrxProfile_id",
+        "drxInactivityTimer",
+        "drxRetransmissionTimer",
+        "longDrxCycle",
+        "longDrxCycleOnly",
+        "onDurationTimer",
+        "shortDrxCycle",
+        "shortDrxCycleTimer"
+    FROM
+    ericsson_bulkcm."vsDataDrxProfile"
+    
+    """
+    )
+
+Dst = ReplaceableObject(
+    'ericsson_cm_3g."Dst"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransport_id",
+        "vsDataRouter_id",
+        "vsDataRouteTableIPv4Static_id",
+        "vsDataDst_id",
+        "vsDataHost_id",
+        "dst"
+    FROM
+    ericsson_bulkcm."vsDataDst"
+    
+    """
+    )
+
+DualAntDlPerfPkg = ReplaceableObject(
+    'ericsson_cm_3g."DualAntDlPerfPkg"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataDualAntDlPerfPkg_id",
+        "licenseStateDualAntDlPerfPkg",
+        "keyIdDualAntDlPerfPkg",
+        "featureStateDualAntDlPerfPkg",
+        "serviceStateDualAntDlPerfPkg"
+    FROM
+    ericsson_bulkcm."vsDataDualAntDlPerfPkg"
+    
+    """
+    )
+
+DualLayBeamfPerfPkg = ReplaceableObject(
+    'ericsson_cm_3g."DualLayBeamfPerfPkg"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataDualLayBeamfPerfPkg_id",
+        "featureStateDualLayBeamfPerfPkg",
+        "keyIdDualLayBeamfPerfPkg",
+        "licenseStateDualLayBeamfPerfPkg",
+        "serviceStateDualLayBeamfPerfPkg"
+    FROM
+    ericsson_bulkcm."vsDataDualLayBeamfPerfPkg"
+    
+    """
+    )
+
+DynamicGBRAdmCtrl = ReplaceableObject(
+    'ericsson_cm_3g."DynamicGBRAdmCtrl"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataDynamicGBRAdmCtrl_id",
+        "featureStateDynamicGBRAdmCtrl",
+        "keyIdDynamicGBRAdmCtrl",
+        "licenseStateDynamicGBRAdmCtrl",
+        "serviceStateDynamicGBRAdmCtrl"
+    FROM
+    ericsson_bulkcm."vsDataDynamicGBRAdmCtrl"
+    
+    """
+    )
+
+DynamicQoSModification = ReplaceableObject(
+    'ericsson_cm_3g."DynamicQoSModification"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataDynamicQoSModification_id",
+        "featureStateDynamicQoSModification",
+        "keyIdDynamicQoSModification",
+        "licenseStateDynamicQoSModification",
+        "serviceStateDynamicQoSModification"
+    FROM
+    ericsson_bulkcm."vsDataDynamicQoSModification"
+    
+    """
+    )
+
+E1PhysPathTerm = ReplaceableObject(
+    'ericsson_cm_3g."E1PhysPathTerm"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataExchangeTerminal_id",
+        "vsDataE1PhysPathTerm_id",
+        "administrativeState",
+        "userLabel",
+        "lineNo",
+        "loopback",
+        "crc4Mode",
+        "idlePattern",
+        "degDegThr",
+        "degDegM",
+        "rdiReporting",
+        "aisReporting",
+        "shutDownTimeout"
+    FROM
+    ericsson_bulkcm."vsDataE1PhysPathTerm"
+    
+    """
+    )
+
+EcBus = ReplaceableObject(
+    'ericsson_cm_3g."EcBus"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataEcBus_id",
+        "connectionType",
+        "ecBusConnectorRef"
+    FROM
+    ericsson_bulkcm."vsDataEcBus"
+    
+    """
+    )
+
+EcPort = ReplaceableObject(
+    'ericsson_cm_3g."EcPort"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataFieldReplaceableUnit_id",
+        "vsDataEcPort_id",
+        "hubPosition",
+        "cascadingOrder",
+        "ecBusRef"
+    FROM
+    ericsson_bulkcm."vsDataEcPort"
+    
+    """
+    )
+
+EcsCsfb = ReplaceableObject(
+    'ericsson_cm_3g."EcsCsfb"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataEcsCsfb_id",
+        "featureStateEcsCsfb",
+        "keyIdEcsCsfb",
+        "licenseStateEcsCsfb",
+        "serviceStateEcsCsfb"
+    FROM
+    ericsson_bulkcm."vsDataEcsCsfb"
+    
+    """
+    )
+
+EDchResources = ReplaceableObject(
+    'ericsson_cm_3g."EDchResources"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "NodeBFunction_id",
+        "vsDataNodeBLocalCellGroup_id",
+        "vsDataNodeBLocalCell_id",
+        "vsDataNodeBSectorCarrier_id",
+        "vsDataEDchResources_id",
+        "availabilityStatus",
+        "operationalState"
+    FROM
+    ericsson_bulkcm."vsDataEDchResources"
+    
+    """
+    )
+
+EmergencyUnlock = ReplaceableObject(
+    'ericsson_cm_3g."EmergencyUnlock"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLm_id",
+        "vsDataEmergencyUnlock_id",
+        "activationsLeft",
+        "expiration",
+        "activationState"
+    FROM
+    ericsson_bulkcm."vsDataEmergencyUnlock"
+    
+    """
+    )
+
+EnergyMeter = ReplaceableObject(
+    'ericsson_cm_3g."EnergyMeter"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataHwUnit_id",
+        "vsDataEnergyMeter_id"
+    FROM
+    ericsson_bulkcm."vsDataEnergyMeter"
+    
+    """
+    )
+
+EnhCellIdInTraces = ReplaceableObject(
+    'ericsson_cm_3g."EnhCellIdInTraces"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataLicensing_id",
+        "vsDataOptionalFeatures_id",
+        "vsDataEnhCellIdInTraces_id",
+        "featureStateEnhCellIdInTraces",
+        "keyIdEnhCellIdInTraces",
+        "licenseStateEnhCellIdInTraces",
+        "serviceStateEnhCellIdInTraces"
+    FROM
+    ericsson_bulkcm."vsDataEnhCellIdInTraces"
+    
+    """
+    )
+
+ENodeBFunction = ReplaceableObject(
+    'ericsson_cm_3g."ENodeBFunction"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "userLabel",
+        "sctpRef",
+        "dnsLookupTimer",
+        "dscpLabel",
+        "nodePCIProfileID",
+        "dnsLookupOnTai",
+        "eNBId",
+        "eNodeBPlmnId_mcc",
+        "eNodeBPlmnId_mnc",
+        "eNodeBPlmnId_mncLength",
+        "s1RetryTimer",
+        "x2BlackList",
+        "x2retryTimerMaxAuto",
+        "x2retryTimerStart",
+        "x2WhiteList",
+        "ulSchedulerDynamicBWAllocationEnabled",
+        "timeAndPhaseSynchCritical",
+        "nnsfMode",
+        "x2IpAddrViaS1Active",
+        "rrcConnReestActive",
+        "zzzTemporary1",
+        "zzzTemporary2",
+        "zzzTemporary3",
+        "zzzTemporary4",
+        "zzzTemporary5",
+        "zzzTemporary6",
+        "zzzTemporary7",
+        "zzzTemporary8",
+        "zzzTemporary9",
+        "zzzTemporary10",
+        "zzzTemporary11",
+        "zzzTemporary12",
+        "timePhaseMaxDeviation",
+        "x2SetupTwoWayRelations",
+        "licCapDistrMethod",
+        "s1HODirDataPathAvail",
+        "maxRandc",
+        "minRandc",
+        "randUpdateInterval",
+        "zzzTemporary13",
+        "zzzTemporary15",
+        "zzzTemporary16",
+        "zzzTemporary17",
+        "upIpAddressRef",
+        "mfbiSupport",
+        "plmnBorderNode",
+        "pwsPersistentStorage",
+        "csfbMeasFromIdleMode",
+        "forcedSiTunnelingActive",
+        "zzzTemporary21",
+        "zzzTemporary22",
+        "zzzTemporary25",
+        "zzzTemporary26",
+        "zzzTemporary23",
+        "zzzTemporary24",
+        "zzzTemporary18",
+        "initPreschedulingEnable",
+        "tOutgoingHoExecCdma1xRtt",
+        "biasThpWifiMobility",
+        "releaseInactiveUesMpLoadLevel",
+        "dnsSelectionS1X2Ref",
+        "tS1HoCancelTimer",
+        "combCellSectorSelectThreshRx",
+        "combCellSectorSelectThreshTx",
+        "releaseInactiveUesInactTime",
+        "timePhaseMaxDeviationMbms",
+        "timePhaseMaxDeviationOtdoa",
+        "timePhaseMaxDeviationTdd",
+        "timePhaseMaxDeviationSib16",
+        "timeAndPhaseSynchAlignment",
+        "timePhaseMaxDeviationCdma2000",
+        "licUlBbPercentileConf",
+        "licUlPrbPercentileConf",
+        "licDlPrbPercentileConf",
+        "mtRreWithoutNeighborActive",
+        "licDlBbPercentileConf",
+        "licConnectedUsersPercentileConf",
+        "ulMaxWaitingTimeGlobal",
+        "softLockRwRWaitTimerInternal",
+        "enabledUlTrigMeas",
+        "dlMaxWaitingTimeGlobal",
+        "tddVoipDrxProfileId",
+        "zzzTemporary29",
+        "mfbiSupportPolicy",
+        "zzzTemporary28",
+        "measuringEcgiWithAgActive",
+        "checkEmergencySoftLock",
+        "softLockRwRWaitTimerOperator",
+        "zzzTemporary30",
+        "zzzTemporary31",
+        "zzzTemporary32",
+        "zzzTemporary33",
+        "zzzTemporary34",
+        "tRelocOverall",
+        "alignTtiBundWUlTrigSinr",
+        "bbVlanPortRef",
+        "useBandPrioritiesInSCellEval",
+        "prioritizeAdditionalBands",
+        "caAwareMfbiIntraCellHo",
+        "zzzTemporary40",
+        "zzzTemporary38",
+        "zzzTemporary39",
+        "zzzTemporary35",
+        "zzzTemporary36",
+        "zzzTemporary37",
+        "gtpuErrorIndicationDscp",
+        "s1GtpuEchoFailureAction",
+        "s1GtpuEchoEnable",
+        "x2GtpuEchoDscp",
+        "x2GtpuEchoEnable",
+        "s1GtpuEchoDscp",
+        "stnNodes",
+        "tcuNodes",
+        "release",
+        "x2BlackList_mcc",
+        "x2BlackList_mnc",
+        "x2BlackList_mncLength",
+        "x2BlackList_enbId",
+        "x2WhiteList_mcc",
+        "x2WhiteList_mnc",
+        "x2WhiteList_mncLength",
+        "x2WhiteList_enbId",
+        "zzzTemporary14",
+        "zzzTemporary20",
+        "zzzTemporary27",
+        "zzzTemporary19",
+        "tRelocOverallValue",
+        "releaseInactiveUesEnable",
+        "csfbForDualRadioUE",
+        "ipAddress",
+        "thpWifiMobilityStatus"
+    FROM
+    ericsson_bulkcm."vsDataENodeBFunction"
+    
+    """
+    )
+
+EnrollmentAuthority = ReplaceableObject(
+    'ericsson_cm_3g."EnrollmentAuthority"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSecM_id",
+        "vsDataCertM_id",
+        "vsDataEnrollmentAuthority_id",
+        "enrollmentCaCertificate",
+        "enrollmentCaFingerprint",
+        "userLabel",
+        "enrollmentAuthorityName"
+    FROM
+    ericsson_bulkcm."vsDataEnrollmentAuthority"
+    
+    """
+    )
+
+EnrollmentServer = ReplaceableObject(
+    'ericsson_cm_3g."EnrollmentServer"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSecM_id",
+        "vsDataCertM_id",
+        "vsDataEnrollmentServerGroup_id",
+        "vsDataEnrollmentServer_id",
+        "userLabel",
+        "uri",
+        "protocol"
+    FROM
+    ericsson_bulkcm."vsDataEnrollmentServer"
+    
+    """
+    )
+
+EnrollmentServerGroup = ReplaceableObject(
+    'ericsson_cm_3g."EnrollmentServerGroup"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSecM_id",
+        "vsDataCertM_id",
+        "vsDataEnrollmentServerGroup_id",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataEnrollmentServerGroup"
+    
+    """
+    )
+
+Equipment = ReplaceableObject(
+    'ericsson_cm_3g."Equipment"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSTN_id",
+        "userLabel",
+        "serialNumber",
+        "productRevision",
+        "productNumber",
+        "manufacturingDate",
+        "productName"
+    FROM
+    ericsson_bulkcm."vsDataEquipment"
+    
+    """
+    )
+
+EquipmentClockReference = ReplaceableObject(
+    'ericsson_cm_3g."EquipmentClockReference"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransport_id",
+        "vsDataSynchronization_id",
+        "vsDataRadioEquipmentClock_id",
+        "vsDataEquipmentClockReference_id",
+        "referenceStatus",
+        "priority",
+        "lockOut",
+        "encapsulation"
+    FROM
+    ericsson_bulkcm."vsDataEquipmentClockReference"
+    
+    """
+    )
+
+EquipmentDiscovery = ReplaceableObject(
+    'ericsson_cm_3g."EquipmentDiscovery"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataNodeSupport_id",
+        "vsDataEquipmentDiscovery_id",
+        "antennaDeviceScanStatus"
+    FROM
+    ericsson_bulkcm."vsDataEquipmentDiscovery"
+    
+    """
+    )
+
+EquipmentSupportFunction = ReplaceableObject(
+    'ericsson_cm_3g."EquipmentSupportFunction"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipmentSupportFunction_id",
+        "supportSystemControl",
+        "supportFunction",
+        "release",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataEquipmentSupportFunction"
+    
+    """
+    )
+
+EricssonFilter = ReplaceableObject(
+    'ericsson_cm_3g."EricssonFilter"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataSecM_id",
+        "vsDataUserManagement_id",
+        "vsDataLdapAuthenticationMethod_id",
+        "vsDataLdap_id",
+        "vsDataEricssonFilter_id",
+        "roleAliasesBaseDn",
+        "targetBasedAccessControl",
+        "version"
+    FROM
+    ericsson_bulkcm."vsDataEricssonFilter"
+    
+    """
+    )
+
+EthernetBridgePort = ReplaceableObject(
+    'ericsson_cm_3g."EthernetBridgePort"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataEthernetSwitchModule_id",
+        "vsDataEthernetBridgePort_id",
+        "egressUntagVlanRef",
+        "externalPort",
+        "pbitQueueMap_queue",
+        "pbitQueueMap_pbit",
+        "physicalPortRef",
+        "untaggedIngressPriority",
+        "untaggedIngressVlanRef",
+        "userLabel",
+        "vlanRef"
+    FROM
+    ericsson_bulkcm."vsDataEthernetBridgePort"
+    
+    """
+    )
+
+EthernetInterface = ReplaceableObject(
+    'ericsson_cm_3g."EthernetInterface"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSTN_id",
+        "vsDataEthernetInterface_id",
+        "operationalState",
+        "mac_address",
+        "port",
+        "mode",
+        "currentMode",
+        "sendLinkAlarmAllowed",
+        "depTrafficManager",
+        "portNumber",
+        "flowControl",
+        "ethMaxFrameSize",
+        "ptpInterfaceGroup",
+        "currentState"
+    FROM
+    ericsson_bulkcm."vsDataEthernetInterface"
+    
+    """
+    )
+
+EthernetLink = ReplaceableObject(
+    'ericsson_cm_3g."EthernetLink"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataIpOam_id",
+        "vsDataIp_id",
+        "vsDataEthernetLink_id",
+        "macAddress",
+        "mtuSize",
+        "metric",
+        "interfaceName",
+        "userLabel",
+        "ipv4Addresses_broadcastAddress",
+        "ipv4Addresses_ipAddress",
+        "ipv4Addresses_prefixLength",
+        "ipv6Addresses",
+        "ipAddress",
+        "subnetMask",
+        "broadcastAddress",
+        "ipv4Addresses",
+        "prefixLength"
+    FROM
+    ericsson_bulkcm."vsDataEthernetLink"
+    
+    """
+    )
+
+EthernetPort = ReplaceableObject(
+    'ericsson_cm_3g."EthernetPort"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataTransport_id",
+        "vsDataEthernetPort_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "mtu",
+        "availabilityStatus",
+        "holdDownTimer",
+        "autoNegEnable",
+        "operationalState",
+        "macAddress",
+        "reservedBy",
+        "operOperatingMode",
+        "userLabel",
+        "administrativeState",
+        "admOperatingMode",
+        "encapsulation",
+        "egressQosClassification",
+        "egressQosMarking",
+        "egressQosQueueMap",
+        "ingressQosMarking",
+        "portNo",
+        "ingressPolicing",
+        "ingressPolicingBurst",
+        "ingressPolicingRate",
+        "masterMode",
+        "operatingMode_autoNegotiation",
+        "operatingMode_configuredSpeedDuplex",
+        "shutDownTimeout",
+        "trafficState"
+    FROM
+    ericsson_bulkcm."vsDataEthernetPort"
+    
+    """
+    )
+
+EthernetSwitch = ReplaceableObject(
+    'ericsson_cm_3g."EthernetSwitch"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataExchangeTerminalIp_id",
+        "vsDataEthernetSwitch_id",
+        "pbitQueueMap_queue",
+        "pbitQueueMap_pbit",
+        "untaggedIngressPriority",
+        "untaggedIngressVid",
+        "vlanMembership_egressUntag",
+        "vlanMembership_vid",
+        "enableVlan",
+        "userLabel",
+        "macAddress",
+        "linkAggLinkSelection"
+    FROM
+    ericsson_bulkcm."vsDataEthernetSwitch"
+    
+    """
+    )
+
+EthernetSwitchFabric = ReplaceableObject(
+    'ericsson_cm_3g."EthernetSwitchFabric"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEthernetSwitchFabric_id",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataEthernetSwitchFabric"
+    
+    """
+    )
+
+EthernetSwitchingAdm = ReplaceableObject(
+    'ericsson_cm_3g."EthernetSwitchingAdm"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEthernetSwitchingAdm_id",
+        "featureStateLinkAgg",
+        "licenseStateLinkAgg",
+        "userLabel",
+        "featureStateL2gp",
+        "l2gpPathCost",
+        "l2gpRapidFailover",
+        "licenseStateL2gp"
+    FROM
+    ericsson_bulkcm."vsDataEthernetSwitchingAdm"
+    
+    """
+    )
+
+EthernetSwitchModule = ReplaceableObject(
+    'ericsson_cm_3g."EthernetSwitchModule"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataEthernetSwitchModule_id",
+        "userLabel",
+        "macAddress",
+        "linkAggLinkSelection"
+    FROM
+    ericsson_bulkcm."vsDataEthernetSwitchModule"
+    
+    """
+    )
+
+EthernetSwitchModulePort = ReplaceableObject(
+    'ericsson_cm_3g."EthernetSwitchModulePort"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataEthernetSwitchModule_id",
+        "vsDataEthernetSwitchModulePort_id",
+        "portNo",
+        "untaggedIngressPriority",
+        "administrativeState",
+        "pbitQueueMap_queue",
+        "pbitQueueMap_pbit",
+        "operatingMode_autoNegotiation",
+        "operatingMode_configuredSpeedDuplex",
+        "externalPort",
+        "egressUntagVlanRef",
+        "vlanRef",
+        "untaggedIngressVlanRef",
+        "userLabel",
+        "lagRef",
+        "trafficState",
+        "remoteFaultIndication"
+    FROM
+    ericsson_bulkcm."vsDataEthernetSwitchModulePort"
+    
+    """
+    )
+
+EthernetSwitchPort = ReplaceableObject(
+    'ericsson_cm_3g."EthernetSwitchPort"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataExchangeTerminalIp_id",
+        "vsDataEthernetSwitch_id",
+        "vsDataEthernetSwitchPort_id",
+        "portNo",
+        "untaggedIngressPriority",
+        "untaggedIngressVid",
+        "vlanMembership_egressUntag",
+        "vlanMembership_vid",
+        "ingressPeakBitrate",
+        "actualSpeedDuplex",
+        "sfpInformation_sfpProductNumber",
+        "sfpInformation_sfpType",
+        "sfpInformation_sfpState",
+        "sfpPort",
+        "systemPort",
+        "administrativeState",
+        "userLabel",
+        "pbitQueueMap_queue",
+        "pbitQueueMap_pbit",
+        "operatingMode_autoNegotiation",
+        "operatingMode_configuredSpeedDuplex",
+        "lagRef",
+        "trafficState"
+    FROM
+    ericsson_bulkcm."vsDataEthernetSwitchPort"
+    
+    """
+    )
+
+Etws = ReplaceableObject(
+    'ericsson_cm_3g."Etws"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataEUtranCellFDD_id",
+        "vsDataEtws_id"
+    FROM
+    ericsson_bulkcm."vsDataEtws"
+    
+    """
+    )
+
+Eul = ReplaceableObject(
+    'ericsson_cm_3g."Eul"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "UtranCell_id",
+        "vsDataHsdsch_id",
+        "vsDataEul_id",
+        "userLabel",
+        "administrativeState",
+        "numEagchCodes",
+        "numEhichErgchCodes",
+        "eulMaxTargetRtwp",
+        "edchTti2Support",
+        "eulDchBalancingEnabled",
+        "eulDchBalancingLoad",
+        "eulDchBalancingOverload",
+        "eulDchBalancingReportPeriod",
+        "eulDchBalancingSupport",
+        "eulDchBalancingSuspendDownSw",
+        "eulDchBalancingTimerNg",
+        "releaseAseUlNg",
+        "eulLoadTriggeredSoftCong",
+        "eulTdSchedulingSupport",
+        "improvedL2Support",
+        "pathlossThresholdEulTti2",
+        "threshEulTti2Ecno"
+    FROM
+    ericsson_bulkcm."vsDataEul"
+    
+    """
+    )
+
+EUtranCellRelation = ReplaceableObject(
+    'ericsson_cm_3g."EUtranCellRelation"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataEUtranCellFDD_id",
+        "vsDataEUtranFreqRelation_id",
+        "vsDataEUtranCellRelation_id",
+        "cellIndividualOffsetEUtran",
+        "isRemoveAllowed",
+        "isHoAllowed",
+        "qOffsetCellEUtran",
+        "adjacentCell",
+        "includeInSystemInformation",
+        "coverageIndicator",
+        "lastModification",
+        "createdBy",
+        "timeOfCreation",
+        "timeOfLastModification",
+        "loadBalancing",
+        "sCellCandidate",
+        "lbBnrAllowed",
+        "incomingLoadBalancing",
+        "lbCovIndicated",
+        "sleepModeCovCellCandidate",
+        "sleepModeCoverageCell",
+        "sleepModeCapacityCell",
+        "hoSuccLevel",
+        "crsAssistanceInfoPriority",
+        "amoAllowed",
+        "amoState",
+        "mobilityStatus_available",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataEUtranCellRelation"
+    
+    """
+    )
+
+EUtraNetwork = ReplaceableObject(
+    'ericsson_cm_3g."EUtraNetwork"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "RncFunction_id",
+        "vsDataEutraNetwork_id",
+        "userLabel",
+        "plmnIdentity_mcc",
+        "plmnIdentity_mnc",
+        "plmnIdentity_mncLength",
+        "reservedBy",
+        "aliasPlmnIdentities",
+        "aliasPlmnIdentities_mcc",
+        "aliasPlmnIdentities_mnc",
+        "aliasPlmnIdentities_mncLength"
+    FROM
+    ericsson_bulkcm."vsDataEUtraNetwork"
+    
+    """
+    )
+
+EUtranFreqRelation = ReplaceableObject(
+    'ericsson_cm_3g."EUtranFreqRelation"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataEUtranCellFDD_id",
+        "vsDataEUtranFreqRelation_id",
+        "eutranFreqToQciProfileRelation",
+        "blackListEntryIdleMode",
+        "cellReselectionPriority",
+        "pMax",
+        "qRxLevMin",
+        "tReselectionEutra",
+        "tReselectionEutraSfHigh",
+        "tReselectionEutraSfMedium",
+        "userLabel",
+        "allowedMeasBandwidth",
+        "presenceAntennaPort1",
+        "qOffsetFreq",
+        "threshXHigh",
+        "threshXLow",
+        "allowedPlmnList_mcc",
+        "allowedPlmnList_mnc",
+        "allowedPlmnList_mncLength",
+        "adjacentFreq",
+        "connectedModeMobilityPrio",
+        "createdBy",
+        "lastModification",
+        "mobilityAction",
+        "timeOfCreation",
+        "timeOfLastModification",
+        "qQualMin",
+        "threshXHighQ",
+        "threshXLowQ",
+        "neighCellConfig",
+        "voicePrio",
+        "blackListEntry",
+        "interFreqMeasType",
+        "lbBnrPolicy",
+        "lbActivationThreshold",
+        "anrMeasOn",
+        "caTriggeredRedirectionActive",
+        "arpPrio",
+        "nonPlannedPhysCellIdRange",
+        "nonPlannedPciTargetIdType",
+        "nonPlannedPhysCellId",
+        "nonPlannedPciCIO",
+        "a5Thr1RsrqFreqOffset",
+        "a5Thr1RsrpFreqOffset",
+        "a5Thr2RsrpFreqOffset",
+        "a5Thr2RsrqFreqOffset",
+        "candNeighborRel",
+        "atoAllowed",
+        "cellSleepCovCellMeasOn",
+        "hybridCsgPhysCellId",
+        "hybridCsgPhysCellIdRange",
+        "csgPhysCellId",
+        "interFreqMeasTypeUlSinr",
+        "csgPhysCellIdRange",
+        "csgCellTargetIdType",
+        "amoAllowed",
+        "allowedPlmnList",
+        "blackListEntry_physicalLayerCellIdGroup",
+        "blackListEntry_physicalLayerSubCellId",
+        "blackListEntry_range",
+        "candNeighborRel_physicalLayerSubCellId",
+        "candNeighborRel_physicalLayerCellIdGroup",
+        "candNeighborRel_cellId",
+        "candNeighborRel_enbId",
+        "candNeighborRel_mcc",
+        "candNeighborRel_mnc",
+        "candNeighborRel_mncLength",
+        "candNeighborRel_tac",
+        "candNeighborRel_mobilityStatusReason",
+        "eutranFreqToQciProfileRelation_lbA4ThresholdRsrpOffset",
+        "eutranFreqToQciProfileRelation_lbQciProfileHandling",
+        "eutranFreqToQciProfileRelation_qciProfileRef",
+        "blackListEntryIdleMode_physicalLayerCellIdGroup",
+        "blackListEntryIdleMode_physicalLayerSubCellId",
+        "blackListEntryIdleMode_range"
+    FROM
+    ericsson_bulkcm."vsDataEUtranFreqRelation"
+    
+    """
+    )
+
+EUtranFrequency = ReplaceableObject(
+    'ericsson_cm_3g."EUtranFrequency"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "vsDataFreqManagement_id",
+        "vsDataEUtranFrequency_id",
+        "arfcnValueEUtranDl",
+        "userLabel",
+        "excludeAdditionalFreqBandList"
+    FROM
+    ericsson_bulkcm."vsDataEUtranFrequency"
+    
+    """
+    )
+
+EventCapabilities = ReplaceableObject(
+    'ericsson_cm_3g."EventCapabilities"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataPmEventM_id",
+        "vsDataEventProducer_id",
+        "vsDataEventCapabilities_id",
+        "maxNoOfJobs"
+    FROM
+    ericsson_bulkcm."vsDataEventCapabilities"
+    
+    """
+    )
+
+EventProducer = ReplaceableObject(
+    'ericsson_cm_3g."EventProducer"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataSystemFunctions_id",
+        "vsDataPmEventM_id",
+        "vsDataEventProducer_id"
+    FROM
+    ericsson_bulkcm."vsDataEventProducer"
+    
+    """
+    )
+
+ExchangeTerminal = ReplaceableObject(
+    'ericsson_cm_3g."ExchangeTerminal"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataExchangeTerminal_id",
+        "vsDataCbu_id",
+        "description_aal2LayerDescription",
+        "description_atmLayerDescription",
+        "description_etType",
+        "description_physicalLayerDescription",
+        "description_tdmSupport",
+        "userLabel",
+        "shuttingDownTimer"
+    FROM
+    ericsson_bulkcm."vsDataExchangeTerminal"
+    
+    """
+    )
+
+ExchangeTerminalIp = ReplaceableObject(
+    'ericsson_cm_3g."ExchangeTerminalIp"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataSubrack_id",
+        "vsDataSlot_id",
+        "vsDataPlugInUnit_id",
+        "vsDataExchangeTerminalIp_id",
+        "vsDataPiuDevice_id",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataExchangeTerminalIp"
+    
+    """
+    )
+
+ExternalENodeBFunction = ReplaceableObject(
+    'ericsson_cm_3g."ExternalENodeBFunction"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "vsDataExternalEUtranPlmn_id",
+        "vsDataExternalENodeBFunction_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataENodeBFunction_id",
+        "vsDataEUtraNetwork_id",
+        "mfbiSupport",
+        "eNodeBPlmnId_mcc",
+        "eNodeBPlmnId_mnc",
+        "eNodeBPlmnId_mncLength",
+        "eNBId",
+        "userLabel",
+        "masterEnbFunctionId",
+        "lastModification",
+        "createdBy",
+        "timeOfCreation",
+        "timeOfLastModification",
+        "ulTrigHoSupport"
+    FROM
+    ericsson_bulkcm."vsDataExternalENodeBFunction"
+    
+    """
+    )
+
+ExternalEUtranCellFDD = ReplaceableObject(
+    'ericsson_cm_3g."ExternalEUtranCellFDD"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "vsDataExternalEUtranPlmn_id",
+        "vsDataExternalENodeBFunction_id",
+        "vsDataExternalEUtranCellFDD_id",
+        "localCellId",
+        "physicalLayerCellIdGroup",
+        "physicalLayerSubCellId",
+        "userLabel",
+        "tac",
+        "activePlmnList_mcc",
+        "activePlmnList_mnc",
+        "activePlmnList_mncLength",
+        "pciConflict",
+        "pciConflictCell_enbId",
+        "pciConflictCell_cellId",
+        "pciConflictCell_mcc",
+        "pciConflictCell_mnc",
+        "pciConflictCell_mncLength",
+        "pciDetectingCell_enbId",
+        "pciDetectingCell_cellId",
+        "pciDetectingCell_mcc",
+        "pciDetectingCell_mnc",
+        "pciDetectingCell_mncLength",
+        "earfcndl",
+        "lbEUtranCellOffloadCapacity",
+        "pciConflictCell",
+        "pciDetectingCell",
+        "activePlmnList"
+    FROM
+    ericsson_bulkcm."vsDataExternalEUtranCellFDD"
+    
+    """
+    )
+
+ExternalEutranFrequency = ReplaceableObject(
+    'ericsson_cm_3g."ExternalEutranFrequency"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "vsDataFreqManagement_id",
+        "vsDataExternalEutranFrequency_id",
+        "userLabel",
+        "earfcnDl",
+        "plmnIdentity_mcc",
+        "plmnIdentity_mnc",
+        "plmnIdentity_mncLength"
+    FROM
+    ericsson_bulkcm."vsDataExternalEutranFrequency"
+    
+    """
+    )
+
+ExternalEUtranPlmn = ReplaceableObject(
+    'ericsson_cm_3g."ExternalEUtranPlmn"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "vsDataExternalEUtranPlmn_id",
+        "plmnIdentity_mcc",
+        "plmnIdentity_mnc",
+        "plmnIdentity_mncLength",
+        "userLabel"
+    FROM
+    ericsson_bulkcm."vsDataExternalEUtranPlmn"
+    
+    """
+    )
+
+ExternalGsmFreq = ReplaceableObject(
+    'ericsson_cm_3g."ExternalGsmFreq"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "vsDataFreqManagement_id",
+        "vsDataExternalGsmFreq_id",
+        "userLabel",
+        "arfcnValueGeranDl",
+        "bandIndicator",
+        "externalGsmFreqGroupId"
+    FROM
+    ericsson_bulkcm."vsDataExternalGsmFreq"
+    
+    """
+    )
+
+ExternalGsmFreqGroup = ReplaceableObject(
+    'ericsson_cm_3g."ExternalGsmFreqGroup"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "vsDataFreqManagement_id",
+        "vsDataExternalGsmFreqGroup_id",
+        "userLabel",
+        "reservedBy",
+        "frequencyGroupId"
+    FROM
+    ericsson_bulkcm."vsDataExternalGsmFreqGroup"
+    
+    """
+    )
+
+ExternalGsmPlmn = ReplaceableObject(
+    'ericsson_cm_3g."ExternalGsmPlmn"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "vsDataExternalGsmPlmn_id",
+        "userLabel",
+        "mcc",
+        "mnc",
+        "mncLength",
+        "aliasPlmnIdentities"
+    FROM
+    ericsson_bulkcm."vsDataExternalGsmPlmn"
+    
+    """
+    )
+
+ExternalNode = ReplaceableObject(
+    'ericsson_cm_3g."ExternalNode"',
+    """
+        
+    SELECT 
+        "FileName",
+        "varDateTime",
+        "configData_dnPrefix",
+        "SubNetwork_id",
+        "SubNetwork_2_id",
+        "MeContext_id",
+        "ManagedElement_id",
+        "vsDataEquipment_id",
+        "vsDataExternalNode_id",
+        "logicalName",
+        "fullDistinguishedName",
+        "informationOnly",
+        "radioAccessTechnology",
+        "supportSystemControl"
+    FROM
+    ericsson_bulkcm."vsDataExternalNode"
+    
+    """
+    )
