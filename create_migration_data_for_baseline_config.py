@@ -34,17 +34,17 @@ metadata = MetaData()
 
 logger.setLevel(logging.DEBUG)
 
-table = Table('normalized_managedobjects', metadata, autoload=True, autoload_with=engine,)
+table = Table('baseline_parameter_config', metadata, autoload=True, autoload_with=engine,schema='live_network')
 
 result = session.query(table).all()
 
-print('    op.bulk_insert(managedobjects, [')
+print('    op.bulk_insert(baseline_parameter_config, [')
 for mo in result:
     # logger.info(mo)
-    name = mo[1]
-    vendor_pk = mo[7]
+    mo_pk = mo[1]
+    parameter_pk = mo[2]
     tech_pk = mo[6]
-    print("        {{'name': '{}', 'vendor_pk': {}, 'tech_pk': {}, 'modified_by': 0, 'added_by': 0}},".format(name, vendor_pk, tech_pk))
+    print("        {{'mo_pk': '{}', 'parameter_pk': {}, 'modified_by': 0, 'added_by': 0}},".format(mo_pk, parameter_pk))
 print(" ])")
 
 session.close()

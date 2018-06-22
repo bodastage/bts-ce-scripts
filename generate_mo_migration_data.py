@@ -41,7 +41,7 @@ managedobjects = session.query(table).filter_by(vendor_pk=vendor_pk).filter_by(t
 
 print("""
     op.bulk_insert(managedobjects, [
-""", end="")
+""",)
 for mo in managedobjects:
     print("""
 		{{'name': '{0}', 'parent_pk': {1}, 'vendor_pk': {2}, 'tech_pk': {3}, 'modified_by': 0, 'added_by': 0, 'pk': {4}}},
@@ -49,4 +49,4 @@ for mo in managedobjects:
 	
 print("""
     ])
-""", end="")
+""",)

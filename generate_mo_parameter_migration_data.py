@@ -29,12 +29,12 @@ vendor_parameters = session.query(table).all()
 
 print("""
     op.bulk_insert(vendor_parameters, [
-""", end="")
+""",)
 for vp in vendor_parameters:
     print("""
 		{{'name': '{0}', 'parent_pk': {1}, 'vendor_pk': {2}, 'tech_pk': {3}, 'modified_by': 0, 'added_by': 0}},
-	""".format(vp.name, vp.parent_pk, vp.vendor_pk, vp.tech_pk), end="")
+	""".format(vp.name, vp.parent_pk, vp.vendor_pk, vp.tech_pk),)
 	
 print("""
     ])
-""", end="")
+""",)
