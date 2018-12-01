@@ -1,4 +1,6 @@
-# Generate gexport alembic migration script from parser config
+# Generate gexport alembic migration script from parser config for final cm data
+#
+# This adds the load id to the tables
 #
 # generate_alembic_migrations_from_parser_cfg.py huawei_gexport_gsm /mediation/conf/cm/gexport_gsm.cfg
 #
@@ -45,6 +47,10 @@ with open(parser_cfg) as f:
         parameters = mo_and_params[1]
         param_list = parameters.split(",")
         print("    op.create_table('{}',".format(mo))
+
+        # Add load id. This is the pk of the cm_loads table
+        print("        sa.Column('LOADID', sa.Integer, autoincrement=False, nullable=False),")
+
         for param in param_list:
             if param == 'DATETIME' or param == 'varDateTime':
                 print("        sa.Column('{}', sa.DateTime, autoincrement=False, nullable=True),".format(param))
