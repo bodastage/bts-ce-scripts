@@ -1,3 +1,5 @@
+# Generate load query for Huawei GExport GSM
+
 from sqlalchemy import create_engine, MetaData, Table
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import text
@@ -64,7 +66,9 @@ for mo in mo_list:
     """.format(mo)
 
     result3 = engine.execute(sql3)
+    if result3 is None: continue
     mo3 = result3.fetchone()[0]
+
     # print("mo3: {}".format(mo3))
 
     # Get parameters in gexport MO
@@ -79,14 +83,10 @@ for mo in mo_list:
     result4 = engine.execute(sql4)
     column_list4 = list(map(lambda x: x[0], result4.fetchall()))
 
-    print("""
-VW_LD_{0} = ReplaceableObject(
-        'huawei_gexport_gsm."VW_LD_{0}"',
-        \"\"\"
-                """.format(mo3))
+    insert_query = ""
+    insert_query += " INSERT INTO huawei_cm_2g.\"{}\"  ".format(mo)
 
-    print("    SELECT")
-    print("    t2.pk as \"LOADID\",")
+    insert_query += " SELECT t2.pk as \"LOADID\","
 
     cnt = 0
     mo_columns  = mo_param_list[mo]
@@ -102,15 +102,14 @@ VW_LD_{0} = ReplaceableObject(
             comma = ","
 
         if c in column_list4:
-            print("    t.\"{0}\" AS \"{0}\" {1}".format(c, comma))
+            insert_query += "    t.\"{0}\" AS \"{0}\" {1}".format(c, comma)
         else:
-            print("    NULL AS \"{0}\" {1}".format(c, comma))
+            insert_query += "    NULL AS \"{0}\" {1}".format(c, comma)
 
-    print("    FROM")
-    print("    huawei_gexport_gsm.\"{}\" t ".format(mo))
-    print("""    CROSS JOIN cm_loads t2
-        WHERE t2.is_current_load = true AND t2.load_status = 'SUCCESS'
-    """
-       .format(mo3))
-    sys.exit(0)
+    insert_query += "    FROM"
+    insert_query += "    huawei_gexport_gsm.\"{}\" t ".format(mo)
+    insert_query += "    CROSS JOIN cm_loads t2  WHERE t2.is_current_load = true ".format(mo3)
+
+    print("{{'file_format': 'huawei_gexport_gsm', 'mo': '{}', 'insert_query': '{}'}},".format(mo, insert_query))
+    # sys.exit(0)
 

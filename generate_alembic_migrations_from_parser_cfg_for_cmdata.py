@@ -48,10 +48,17 @@ with open(parser_cfg) as f:
         param_list = parameters.split(",")
         print("    op.create_table('{}',".format(mo))
 
+
+
         # Add load id. This is the pk of the cm_loads table
         print("        sa.Column('LOADID', sa.Integer, autoincrement=False, nullable=False),")
 
         for param in param_list:
+
+            # Remove VENDOR fields because it makes no sence
+            # if schema == 'huawei_cm_2g':
+            #     if param in ['VENDOR']: continue
+
             if param == 'DATETIME' or param == 'varDateTime':
                 print("        sa.Column('{}', sa.DateTime, autoincrement=False, nullable=True),".format(param))
             elif param in text_fields or param[-3:].lower() == 'ref':

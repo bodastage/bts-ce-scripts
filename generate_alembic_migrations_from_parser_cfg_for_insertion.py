@@ -1,68 +1,116 @@
-# Generate gexport alembic migration script from parser config for final cm data
-#
-# This adds the load id to the tables
-#
-# generate_alembic_migrations_from_parser_cfg.py huawei_gexport_gsm /mediation/conf/cm/gexport_gsm.cfg
-#
-# Example: python generate_alembic_migrations_from_parser_cfg.py huawei_gexport_gsm "data/cm/conf/gexport_gsm.cfg"
-
-# Licence: Apache 2.0
-#
-
-import os
+from sqlalchemy import create_engine, MetaData, Table
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.sql import text
+import time
+import timeit
 import sys
-import csv
+import os
 import logging
 
-if len(sys.argv) != 3:
-    print("Format: {0} {1} {2}".format(os.path.basename(__file__), "<schema>", "<parser config file>"))
-    sys.exit()
 
-schema = sys.argv[1]
-parser_cfg = None
+logging.basicConfig(format='%(asctime)s - %(levelname)s - %(lineno)d - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+logger = logging.getLogger(__name__)
 
-parser_cfg = sys.argv[2]
+engine = create_engine('postgresql://bodastage:password@192.168.99.100/bts')
 
+Session = sessionmaker(bind=engine)
+session = Session()
 
-mo_list = []
+metadata = MetaData()
 
-text_fields = ["LAI","CAPACITYLOCKS","UMFI_IDLE","ULPRIOTHR","UQRXLEVMIN","COVERAGEU","UHPRIOTHR", "reservedBy",
-                "certificateContent_publicKey", "sectorCarrierRef", "trustedCertificates", "consistsOf","consistsOf","listOfNe",
-                "equipmentClockPriorityTable","rfBranchRef", "syncRiPortCandidate", "transceiverRef","vsdatamulticastantennabranch",
-                "associatedRadioNodes","ethernetPortRef","staticRoutes_ipAddress", "staticRoutes_networkMask",
-                "staticRoutes_nextHopIpAddr","staticRoutes_redistribute","ipInterfaceMoRef","ipAccessHostRef",
-                "physicalPortList","additionalText","candNeighborRel_enbId", "vlanRef","trDeviceRef","port","iubLinkUtranCell",
-                "manages","iubLinkUtranCell", "FREQLST"]
-
-print("def upgrade():")
-with open(parser_cfg) as f:
-    data = f.readlines()
+logger.setLevel(logging.DEBUG)
 
 
-    for row in data:
-        mo_and_params = row.rstrip().split(":")
-        mo = mo_and_params[0]
-        mo_list.append(mo)
+# Get load tables
+sql = """
+select distinct table_name from
+information_schema.columns
+where 
+table_schema = 'huawei_cm_2g'
+"""
 
-        parameters = mo_and_params[1]
-        param_list = parameters.split(",")
-        print("    op.create_table('{}',".format(mo))
+result = engine.execute(sql)
+mo_list = list( map(lambda x: x[0], result.fetchall()) )
 
-        # Add load id. This is the pk of the cm_loads table
-        print("        sa.Column('LOADID', sa.Integer, autoincrement=False, nullable=False),")
+mo_param_list = {}
 
-        for param in param_list:
-            if param == 'DATETIME' or param == 'varDateTime':
-                print("        sa.Column('{}', sa.DateTime, autoincrement=False, nullable=True),".format(param))
-            elif param in text_fields or param[-3:].lower() == 'ref':
-                print("        sa.Column('{}', sa.Text, autoincrement=False, nullable=True),".format(param))
-            else:
-                print("        sa.Column('{}', sa.CHAR(length=250), autoincrement=False, nullable=True),".format(param))
-        print("        schema='{}'".format(schema))
-        print("    )")
-        print("")
-
-
-print("def downgrade():")
 for mo in mo_list:
-    print("    op.drop_table('{}', schema='{}')".format(mo, schema))
+    sql2 = """
+    SELECT column_name FROM
+    information_schema.columns
+    WHERE 
+    table_schema = 'huawei_cm_2g'
+    AND table_name = '{}'
+    ORDER BY ordinal_position asc
+    """.format(mo)
+
+    result2 = engine.execute(sql2)
+
+    column_list = list(map(lambda x: x[0], result2.fetchall()))
+    mo_param_list[mo] = column_list
+
+    # print(mo_param_list)
+
+
+# Get gexport mos
+for mo in mo_list:
+    sql3 = """
+    select distinct table_name from
+    information_schema.columns
+    where 
+    table_schema = 'huawei_gexport_gsm'
+    AND ( table_name  = '{0}' OR table_name = 'G' || '{0}' )
+    LIMIT 1
+    """.format(mo)
+
+    result3 = engine.execute(sql3)
+    mo3 = result3.fetchone()[0]
+    # print("mo3: {}".format(mo3))
+
+    # Get parameters in gexport MO
+    sql4 = """
+    SELECT column_name from
+    information_schema.columns
+    WHERE 
+    table_schema = 'huawei_gexport_gsm'
+    AND table_name = '{}'
+    ORDER BY ordinal_position asc
+    """.format(mo3)
+    result4 = engine.execute(sql4)
+    column_list4 = list(map(lambda x: x[0], result4.fetchall()))
+
+    print("""
+VW_LD_{0} = ReplaceableObject(
+        'huawei_gexport_gsm."VW_LD_{0}"',
+        \"\"\"
+                """.format(mo3))
+
+    print("    SELECT")
+    print("    t2.pk as \"LOADID\",")
+
+    cnt = 0
+    mo_columns  = mo_param_list[mo]
+    num_of_params = len(mo_columns)
+
+    for c in mo_columns:
+        cnt += 1
+
+        if c == 'LOADID': continue
+
+        comma = ""
+        if cnt < num_of_params :
+            comma = ","
+
+        if c in column_list4:
+            print("    t.\"{0}\" AS \"{0}\" {1}".format(c, comma))
+        else:
+            print("    NULL AS \"{0}\" {1}".format(c, comma))
+
+    print("    FROM")
+    print("    huawei_gexport_gsm.\"{}\" t ".format(mo))
+    print("""    CROSS JOIN cm_loads t2
+        WHERE t2.is_current_load = true AND t2.load_status = 'SUCCESS'
+    """
+       .format(mo3))
+    sys.exit(0)
+
